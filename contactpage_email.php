@@ -17,6 +17,8 @@ $to = 'community.vitalpal@gmail.com';
 
 // $to = $visitor_email;
 
+// Just Testing for github
+
 $headers = "From: $email_from \r\n";
 
 $headers .= "Reply-To $visitor_email \r\n";
