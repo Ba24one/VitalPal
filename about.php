@@ -3,7 +3,7 @@
     <meta name="viewport" content="with=device-width, initial-scale=1.0">
     <head>
         <title>VitalPal - Home Page</title>
-        <link rel="stylesheet" href="css/style_1.css">
+        <link rel="stylesheet" href="css/style_1.css?v=<?php echo time(); ?>">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
@@ -44,7 +44,7 @@
                 The VitalPal Covid Patient Management System is a web-based application where it bridges self-quarantined patients and the Ministry of health
                 to understand the patients who are currently undergoing domestic medication to recover from the Covid-19 Corona Virus.
             </p>
-                <a href="index.html" class="common-btn green-btn">EXPLORE NOW</a>
+                <a href="index.php" class="common-btn green-btn">EXPLORE NOW</a>
         </div>
         <div class="about-col">
             <img src="images/about.jpg" alt="">
