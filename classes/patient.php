@@ -19,7 +19,7 @@
            
             if ($result1 == 0) {
                 $register = mysqli_query($con, "INSERT INTO patient (p_name, gender, p_dob, nic, address, email, p_username, p_password) VALUES 
-                ('$name','$gender','$dob','$nic','$address','$email', '$username', '$password')") or die(mysqli_error());                   
+                ('$name','$gender','$dob','$nic','$address','$email', '$username', '$password')") or die(mysqli_error($con));                   
                 return $register;
             } else {
                 return false;

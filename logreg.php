@@ -4,9 +4,10 @@
 
    if ($_SERVER["REQUEST_METHOD"] == "POST"){
       
-      $register = $patient->p_register($_REQUEST['name'],$_REQUEST['dob'],$_REQUEST['address'],$_REQUEST['email'], $_REQUEST['gender'], $_REQUEST['nic'], $_REQUEST['username'], $_REQUEST['password']);
+      $register = $patient->p_register($_REQUEST['name'],$_REQUEST['gender'], $_REQUEST['dob'],  $_REQUEST['nic'], $_REQUEST['address'],$_REQUEST['email'],  $_REQUEST['username'], $_REQUEST['password']);
       if($register){
         echo "Registration Successful!";
+        echo $_POST['gender'];
       }
       else
       {
