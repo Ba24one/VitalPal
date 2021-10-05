@@ -61,9 +61,9 @@
                         <i class="fa fa-venus-mars"></i>
                         <select name="gender" class="gendertype" required>
                             <option value="" selected hidden>Select gender</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                            <option value="other">Other</option>
+                            <option value="m">Male</option>
+                            <option value="f">Female</option>
+                            <option value="o">Other</option>
                         </select>
                     </div>
                     <div class="input-field">
