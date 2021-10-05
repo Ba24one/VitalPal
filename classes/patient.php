@@ -44,8 +44,11 @@
             }
         }
 
-        public function p_name(){
-
+        public function p_name($id){
+            
+            $result = mysqli_query($this->vpc, "SELECT * from patient where patient_id='$id'");
+            $row = mysqli_fetch_array($result);
+            echo $row['p_name'];
         }
 
         public function p_session(){

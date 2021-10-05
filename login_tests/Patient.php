@@ -4,7 +4,7 @@
    $patient = new Patient;
 
    $id = $_SESSION['id'];
-   if (!$patient->session()){
+   if (!$patient->p_session()){
       header("location:logreg.php");
    }
    if (isset($_REQUEST['q'])){
@@ -24,7 +24,7 @@
 
     <body>
         <div class="form">
-            <h1>Welcome <?php $user->fullname($id);?></h1>
+            <h1>Welcome <?php $patient->p_name($id);?></h1>
             <p align="right"><a href="?q=logout">LOGOUT</a></p>
             <p align="left"><a href="crud.php">CRUD</a></p>
         </div>
