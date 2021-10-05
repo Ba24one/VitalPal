@@ -4,7 +4,7 @@
 
    if ($_SERVER["REQUEST_METHOD"] == "POST"){
       
-      $register = $patient->register($_REQUEST['name'],$_REQUEST['dob'],$_REQUEST['address'],$_REQUEST['email'], $_REQUEST['gender'], $_REQUEST['nic'], $_REQUEST['username'], $_REQUEST['password']);
+      $register = $patient->p_register($_REQUEST['name'],$_REQUEST['dob'],$_REQUEST['address'],$_REQUEST['email'], $_REQUEST['gender'], $_REQUEST['nic'], $_REQUEST['username'], $_REQUEST['password']);
       if($register){
         echo "Registration Successful!";
       }
@@ -33,7 +33,7 @@
     <div class="container">
         <div class="forms-container">
             <div class="login-registration">
-                <form action="" class="login-form">
+                <form action="" method="POST" class="login-form">
                     <h2 class="title">Login</h2>
                     <div class="input-field">
                         <i class="fa fa-user"></i>
@@ -55,7 +55,7 @@
                     <input type="submit" value="Login" class="btn solid">
                 </form>
 
-                <form action="" class="registration-form">
+                <form action="" method="POST" class="registration-form">
                     <h2 class="title">Register</h2>
                     <h3 class="smalltitle">--- Registration is only for patients ---</h3>
                     <div class="input-field">
