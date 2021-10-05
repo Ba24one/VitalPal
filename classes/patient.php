@@ -31,7 +31,7 @@
 
             $password = md5($password);
             $con = mysqli_connect(HOST, USER, PASS, DB) or die('Connection Error! '.mysqli_error());
-            $check = mysqli_query($con, "SELECT * FROM patient WHERE username='$username' AND password='$password'");
+            $check = mysqli_query($con, "SELECT * FROM patient WHERE p_username='$username' AND p_password='$password'");
             $data = mysqli_fetch_array($check);
             $result = mysqli_num_rows($check);
         
@@ -50,10 +50,17 @@
 
         public function p_session(){
 
+           
+            if (isset($_SESSION['login'])) {
+                return $_SESSION['login'];
+            }
+            
         }
 
         public function p_logout(){
 
+            $_SESSION['login'] = false;
+            session_destroy();
         }
 
         public function p_fetchdata(){

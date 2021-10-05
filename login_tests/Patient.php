@@ -1,14 +1,14 @@
 <?php
    session_start();
-   include_once 'classes/patient.php';
+   include_once '../classes/patient.php';
    $patient = new Patient;
 
    $id = $_SESSION['id'];
-   if (!$user->session()){
+   if (!$patient->session()){
       header("location:logreg.php");
    }
    if (isset($_REQUEST['q'])){
-      $user->logout();
+      $patient->p_logout();
       header("location:logreg.php");
    }
 ?>

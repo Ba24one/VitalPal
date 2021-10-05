@@ -18,7 +18,7 @@
     <div class="container">
         <div class="forms-container">
             <div class="login-registration">
-                <form action="action.php" method="POST" class="login-form">
+                <form id="form1" action="validation.php" method="POST" class="login-form">
                     <h2 class="title">Login</h2>
                     <div class="input-field">
                         <i class="fa fa-user"></i>
@@ -28,7 +28,7 @@
                         <i class="fa fa-lock"></i>
                         <input type="password" name="password" placeholder="Password">
                     </div>
-                    <div class="input-field">
+                    <!-- <div class="input-field">
                         <i class="fa fa-anchor"></i>
                         <select name="users" class="usertype" required>
                             <option value="" selected hidden>Select user type</option>
@@ -36,11 +36,11 @@
                             <option value="doctor">Doctor</option>
                             <option value="admin">Admin</option>
                         </select>
-                    </div>
+                    </div> -->
                     <input name="submit1" type="submit" value="Login" class="btn solid">
                 </form>
 
-                <form action="action.php" method="POST" class="registration-form">
+                <form id="form2" action="validation.php" method="POST" class="registration-form">
                     <h2 class="title">Register</h2>
                     <h3 class="smalltitle">--- Registration is only for patients ---</h3>
                     <div class="input-field">

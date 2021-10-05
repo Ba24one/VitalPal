@@ -1,6 +1,27 @@
 <?php 
 
-    if($_POST['submit2']){
+    if($_POST['submit1']){
+
+        session_start();
+        include_once 'classes/patient.php';
+        $patient = new Patient();
+        if ($patient->p_session())
+        {
+            header("location:login_tests/Patient.php");
+        }
+
+        $patient = new Patient();
+        if ($_SERVER["REQUEST_METHOD"] == "POST"){
+            $login = $patient->p_login($_REQUEST['username'],$_REQUEST['password']);
+            if($login){
+                header("location:login_tests/Patient.php");
+            }
+            else
+            {
+                echo "Login Failed!";
+            }
+        }
+    } else if($_POST['submit2']){
 
         include_once 'classes/patient.php';
             $patient = new Patient();
@@ -18,27 +39,6 @@
                 }
             }
 
-    } else if($_POST['submit1']){
-
-        session_start();
-        include_once 'classes/patient.php';
-        $patient = new Patient();
-        if ($patient->session())
-        {
-            header("location:Patient.php");
-        }
-
-        $patient = new Patient();
-        if ($_SERVER["REQUEST_METHOD"] == "POST"){
-            $login = $patient->p_login($_REQUEST['username'],$_REQUEST['password']);
-            if($login){
-                header("location:Patient.php");
-            }
-            else
-            {
-                echo "Login Failed!";
-            }
-        }
-    }
+    } 
 
 ?>
