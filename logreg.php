@@ -1,20 +1,4 @@
-<?php
-   include_once 'classes/patient.php';
-   $patient = new Patient();
 
-   if ($_SERVER["REQUEST_METHOD"] == "POST"){
-      
-      $register = $patient->p_register($_REQUEST['name'],$_REQUEST['gender'], $_REQUEST['dob'],  $_REQUEST['nic'], $_REQUEST['address'],$_REQUEST['email'],  $_REQUEST['username'], $_REQUEST['password']);
-      if($register){
-        echo "Registration Successful!";
-        echo $_POST['gender'];
-      }
-      else
-      {
-        echo "Entered email or username already exists!";
-      }
-   }
-?>
 
 <!DOCTYPE html>
 <html>
@@ -34,7 +18,7 @@
     <div class="container">
         <div class="forms-container">
             <div class="login-registration">
-                <form action="" method="POST" class="login-form">
+                <form action="action.php" method="POST" class="login-form">
                     <h2 class="title">Login</h2>
                     <div class="input-field">
                         <i class="fa fa-user"></i>
@@ -53,10 +37,10 @@
                             <option value="admin">Admin</option>
                         </select>
                     </div>
-                    <input type="submit" value="Login" class="btn solid">
+                    <input name="submit1" type="submit" value="Login" class="btn solid">
                 </form>
 
-                <form action="" method="POST" class="registration-form">
+                <form action="action.php" method="POST" class="registration-form">
                     <h2 class="title">Register</h2>
                     <h3 class="smalltitle">--- Registration is only for patients ---</h3>
                     <div class="input-field">
@@ -96,7 +80,7 @@
                         <i class="fa fa-lock"></i>
                         <input type="password" name="password" placeholder="Password">
                     </div>
-                    <input type="submit" value="Register" class="btn solid">
+                    <input name="submit2" type="submit" value="Register" class="btn solid">
                 </form>
             </div>
         </div>

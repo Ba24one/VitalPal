@@ -12,6 +12,7 @@
       header("location:logreg.php");
    }
 ?>
+
     <html>
 
     <head>

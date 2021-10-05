@@ -26,8 +26,22 @@
             }
         }
 
-        public function p_login(){
+        // Login function
+        public function p_login($username, $password){
 
+            $password = md5($password);
+            $con = mysqli_connect(HOST, USER, PASS, DB) or die('Connection Error! '.mysqli_error());
+            $check = mysqli_query($con, "SELECT * FROM patient WHERE username='$username' AND password='$password'");
+            $data = mysqli_fetch_array($check);
+            $result = mysqli_num_rows($check);
+        
+            if ($result == 1) {
+                $_SESSION['login'] = true;
+                $_SESSION['id'] = $data['id'];
+                return true;
+            } else {
+                return false;
+            }
         }
 
         public function p_name(){
