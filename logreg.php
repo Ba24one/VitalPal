@@ -1,3 +1,20 @@
+<?php
+   include_once 'classes/patient.php';
+   $patient = new Patient();
+
+   if ($_SERVER["REQUEST_METHOD"] == "POST"){
+      
+      $register = $patient->register($_REQUEST['name'],$_REQUEST['dob'],$_REQUEST['address'],$_REQUEST['email'], $_REQUEST['gender'], $_REQUEST['nic'], $_REQUEST['username'], $_REQUEST['password']);
+      if($register){
+        echo "Registration Successful!";
+      }
+      else
+      {
+        echo "Entered email or username already exists!";
+      }
+   }
+?>
+
 <!DOCTYPE html>
 <html>
     <meta charset="UTF=8"> 
