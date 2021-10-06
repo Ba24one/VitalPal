@@ -16,11 +16,11 @@
             $password = md5($password);
             
             $checkuser = mysqli_query($this->vpc, "SELECT patient_id FROM patient WHERE p_username='$username'");            
-            $result1 = mysqli_num_rows($checkuser);       
-           
+            $result1 = mysqli_num_rows($checkuser);               
+
             if ($result1 == 0) {
-                $register = mysqli_query($this->vpc, "INSERT INTO patient (p_name, gender, p_dob, nic, address, email, p_username, p_password) VALUES 
-                ('$name','$gender','$dob','$nic','$address','$email', '$username', '$password')") or die(mysqli_error($this->vpc));                   
+                $register = mysqli_query($this->vpc, "INSERT INTO patient (p_name, gender, p_dob, nic, address, email, p_username, p_password, p_status) VALUES 
+                ('$name','$gender','$dob','$nic','$address','$email', '$username', '$password', 'a')") or die(mysqli_error($this->vpc));                   
                 return $register;
             } else {
                 return false;
@@ -32,7 +32,7 @@
 
             $password = md5($password);
 
-            $check = mysqli_query($this->vpc, "SELECT * FROM patient WHERE p_username='$username' AND p_password='$password'");
+            $check = mysqli_query($this->vpc, "SELECT * FROM patient WHERE p_username='$username' AND p_password='$password' AND p_status='a'");
             $data = mysqli_fetch_array($check);
             $result = mysqli_num_rows($check);
         

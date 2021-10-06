@@ -17,7 +17,7 @@
         public function a_login($username, $password){
             $password = md5($password);
 
-            $check = mysqli_query($this->vpc, "SELECT * FROM admin WHERE a_username='$username' AND a_password='$password'");
+            $check = mysqli_query($this->vpc, "SELECT * FROM admin WHERE a_username='$username' AND a_password='$password' AND a_status='a'");
             $data = mysqli_fetch_array($check);
             $result = mysqli_num_rows($check);
         

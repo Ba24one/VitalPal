@@ -17,22 +17,15 @@
         public function d_login($username, $password){
             $password = md5($password);
 
-            $check1 = mysqli_query($this->vpc, "SELECT * FROM doctor WHERE d_status='a'");
-            $data = mysqli_fetch_array($check1);
-            $result1 = mysqli_num_rows($check1);
-
-            $check2 = mysqli_query($this->vpc, "SELECT * FROM doctor WHERE d_username='$username' AND d_password='$password'");
-            $data = mysqli_fetch_array($check2);
-            $result2 = mysqli_num_rows($check2);
-
-            if($result1 == 1){
-                if ($result2 == 1) {
-                    $_SESSION['login'] = true;
-                    $_SESSION['id'] = $data['doctor_id'];
-                    return true;
-                } else {
-                    return false;
-                }
+            $check = mysqli_query($this->vpc, "SELECT * FROM doctor WHERE d_username='$username' AND d_password='$password' AND d_status='a'");
+            $data = mysqli_fetch_array($check);
+            $result = mysqli_num_rows($check);
+            
+            if($result == 1){
+                
+                $_SESSION['login'] = true;
+                $_SESSION['id'] = $data['doctor_id'];
+                return true;               
             }
             else{
                 return false;
