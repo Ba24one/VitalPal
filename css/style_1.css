@@ -367,17 +367,32 @@ h3{
 
 .news-col{
     flex-basis: 48%;
-    /* padding: 30px 2px; */
+    padding-bottom: 30px;
 }
 .news-col img{
     width: 100%;
+    border-radius: 1%;
+}
+.news-col .author p{
+    font-size: 12px;
+    padding: 0 0 0;
+    text-align: right;
+    font-style: italic;
+    font-weight: 600;
+}
+.news-col .date p{
+    font-size: 12px;
+    padding: 0 0 0;
+    text-align: right;
+    font-style: italic;
+    font-weight: 600;
 }
 .news-col h3{
     padding-top: 0;
     text-align: left;
 }
 .news-col p{
-    padding: 15px 0 25px;
+    padding: 15px 0 10px;
     text-align: justify;
 }
 

@@ -35,40 +35,42 @@
 
 <!-- ------ news page content ------ -->
 
-
 <section class="news-content">
+
+<?php
+        include_once 'classes/news.php';
+        $fetchdata=new News();
+        $sql=$fetchdata->n_fetchdata();
+        while($row=mysqli_fetch_array($sql)){
+?>
     
     <div class="row">
         <div class="news-col">
-            <img src="images/about.jpg" alt="">
+            <img src="data:image/jpeg;charset=utf8;base64,<?php echo base64_encode($row['picture']);?>" alt="" >
         </div>
         <div class="news-col">
             <h3>
-                40 more COVID-19 deaths reported: Death toll surges to 13,059
+                <?php echo htmlentities($row['title']);?>
             </h3>
             <p>
-                A total of 40 more COVID-19 related deaths that occurred yesterday (02) were confirmed by the Director-General of Health Services today 
-                pushing the death toll to 13,059.Acco rding to the Government Information Department, 18 females and 22 males are among the deceased.
-                <br> A total of 28 people who are above 60 years of age are among the deceased while 11 of them are between 30 and 59 years of age.
-                One death has been reported below 30 years of age.
+                <?php echo htmlentities($row['description']);?>
             </p>
+            <div class="author">
+                <p>
+                    <?php echo htmlentities($row['author']);?>
+                </p>
+            </div>
+            <div class="date">
+                <p>
+                    <?php echo htmlentities($row['date']);?>
+                </p>
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="news-col">
-            <img src="images/about.jpg" alt="">
-        </div>
-        <div class="news-col">
-            <h3>Nine core long-COVID symptoms identified in a new study</h3>
-            <p>
-                A new study has underlined nine core long-COVID symptoms, occurring 90-180 days after COVID-19 was diagnosed, Dr. Chandima Jeewandara, 
-                Director of the Allergy, Immunology and Cell Biology Unit of the Sri Jayawardenepura University said. Dr Jeewandra said the term 'long COVID' 
-                is commonly used to describe signs and symptoms that continue or develop after acute COVID-19, which Includes both ongoing symptomatic 
-                COVID-19 (from 4 to 12 weeks) and post-COVID-19 syndrome (≥12 weeks). “Long-COVID symptoms were more frequent in those who had been 
-                hospitalised, and they were slightly more common in women.” he pointed out. (Sheain Fernandopulle) The core long-COVID symptoms are as follows,                
-            </p>
-        </div>
-    </div>
+
+<?php
+        }
+?>
 
 </section>
 

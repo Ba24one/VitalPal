@@ -22,7 +22,7 @@
                 }
                 else
                 {
-                    echo "Login Failed!";
+                    echo "<script>alert('Login Failed!');</script>";
                 }
             }
         }
@@ -44,7 +44,7 @@
                 }
                 else
                 {
-                    echo "Login Failed!";
+                    echo "<script>alert('Login Failed!');</script>";
                 }
             }
         }
@@ -66,7 +66,7 @@
                 }
                 else
                 {
-                    echo "Login Failed!";
+                    echo "<script>alert('Login Failed!');</script>";
                 }
             }
         }
@@ -82,11 +82,11 @@
     
             $register = $patient->p_register($_REQUEST['name'],$_REQUEST['gender'], $_REQUEST['dob'],  $_REQUEST['nic'], $_REQUEST['address'],$_REQUEST['email'],  $_REQUEST['username'], $_REQUEST['password']);
             if($register){
-                echo "Registration Successful!";
+                echo "<script>alert('Registration Successful!');</script>";
             }
             else
             {
-                echo "Entered email or username already exists!";
+                echo "<script>alert('Entered email address or username already exists!');</script>";
             }
         }
 
