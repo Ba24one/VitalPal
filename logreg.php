@@ -100,7 +100,7 @@
 <!DOCTYPE html>
 <html>
     <meta charset="UTF=8"> 
-    <meta name="viewport" content="with=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <head>
     <title>Login and Registration Form</title>
     <link rel="stylesheet" href="css/style_2.css?v=<?php echo time(); ?>">

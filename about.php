@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <meta name="viewport" content="with=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <head>
         <title>VitalPal - Home Page</title>
         <link rel="stylesheet" href="css/style_1.css?v=<?php echo time(); ?>">
