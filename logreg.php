@@ -1,3 +1,102 @@
+<!-- PHP Section -->
+<?php 
+
+    // Login functionalities
+    if(isset($_POST['submit1'])){
+
+        // Patient login
+        if($_POST['users']=="patient"){
+            session_start();
+            include_once 'classes/patient.php';
+            $patient = new Patient();
+            if ($patient->p_session())
+            {
+                header("location:login_tests/Patient.php");
+            }
+
+            $patient = new Patient();
+            if ($_SERVER["REQUEST_METHOD"] == "POST"){
+                $login = $patient->p_login($_REQUEST['username'],$_REQUEST['password']);
+                if($login){
+                    header("location:login_tests/Patient.php");
+                }
+                else
+                {
+                    echo "Login Failed!";
+                }
+            }
+        }
+        // Doctor login
+        else if($_POST['users']=="doctor"){
+            session_start();
+            include_once 'classes/doctor.php';
+            $doctor = new Doctor();
+            if ($doctor->d_session())
+            {
+                header("location:login_tests/Doctor.php");
+            }
+
+            $doctor = new Doctor();
+            if ($_SERVER["REQUEST_METHOD"] == "POST"){
+                $login = $doctor->d_login($_REQUEST['username'],$_REQUEST['password']);
+                if($login){
+                    header("location:login_tests/Doctor.php");
+                }
+                else
+                {
+                    echo "Login Failed!";
+                }
+            }
+        }
+        // Admin login
+        else{
+            session_start();
+            include_once 'classes/admin.php';
+            $admin = new Admin();
+            if ($admin->a_session())
+            {
+                header("location:login_tests/Admin.php");
+            }
+
+            $admin = new Admin();
+            if ($_SERVER["REQUEST_METHOD"] == "POST"){
+                $login = $admin->a_login($_REQUEST['username'],$_REQUEST['password']);
+                if($login){
+                    header("location:login_tests/Admin.php");
+                }
+                else
+                {
+                    echo "Login Failed!";
+                }
+            }
+        }
+        
+    } 
+    // Registration functionalities
+    else if(isset($_POST['submit2'])){
+
+        include_once 'classes/patient.php';
+        $patient = new Patient();
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST"){
+    
+            $register = $patient->p_register($_REQUEST['name'],$_REQUEST['gender'], $_REQUEST['dob'],  $_REQUEST['nic'], $_REQUEST['address'],$_REQUEST['email'],  $_REQUEST['username'], $_REQUEST['password']);
+            if($register){
+                echo "Registration Successful!";
+            }
+            else
+            {
+                echo "Entered email or username already exists!";
+            }
+        }
+
+    }else{
+        // echo "Please click one button";
+    }
+
+?>
+
+<!-- HTML Section  -->
 <!DOCTYPE html>
 <html>
     <meta charset="UTF=8"> 
@@ -16,7 +115,8 @@
     <div class="container">
         <div class="forms-container">
             <div class="login-registration">
-                <form action="" class="login-form">
+                <!-- User Login -->
+                <form id="form1" action="" method="POST" class="login-form">
                     <h2 class="title">Login</h2>
                     <div class="input-field">
                         <i class="fa fa-user"></i>
@@ -35,10 +135,11 @@
                             <option value="admin">Admin</option>
                         </select>
                     </div>
-                    <input type="submit" value="Login" class="btn solid">
+                    <input name="submit1" type="submit" value="Login" class="btn solid">
                 </form>
 
-                <form action="" class="registration-form">
+                <!-- User Registration -->
+                <form id="form2" action="" method="POST" class="registration-form">
                     <h2 class="title">Register</h2>
                     <h3 class="smalltitle">--- Registration is only for patients ---</h3>
                     <div class="input-field">
@@ -78,7 +179,7 @@
                         <i class="fa fa-lock"></i>
                         <input type="password" name="password" placeholder="Password">
                     </div>
-                    <input type="submit" value="Register" class="btn solid">
+                    <input name="submit2" type="submit" value="Register" class="btn solid">
                 </form>
             </div>
         </div>
