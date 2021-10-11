@@ -144,7 +144,7 @@
                     <h3 class="smalltitle">--- Registration is only for patients ---</h3>
                     <div class="input-field">
                         <i class="fa fa-pencil"></i>
-                        <input type="text" name="name" placeholder="Name with Initials">
+                        <input type="text" name="name" placeholder="Name with Initials" required>
                     </div>
                     <div class="input-field">
                         <i class="fa fa-birthday-cake"></i>
@@ -152,11 +152,11 @@
                     </div>
                     <div class="input-field">
                         <i class="fa fa-map-marker"></i>
-                        <input type="text" name="address" placeholder="Address">
+                        <input type="text" name="address" placeholder="Address" required>
                     </div>
                     <div class="input-field">
                         <i class="fa fa-envelope"></i>
-                        <input type="email" name="email" placeholder="Email">
+                        <input type="email" name="email" placeholder="Email" required>
                     </div>
                     <div class="input-field">
                         <i class="fa fa-venus-mars"></i>
@@ -169,15 +169,15 @@
                     </div>
                     <div class="input-field">
                         <i class="fa fa-id-card"></i>
-                        <input type="text" name="nic" placeholder="NIC">
+                        <input type="text" name="nic" placeholder="NIC" required>
                     </div>
                     <div class="input-field">
                         <i class="fa fa-user"></i>
-                        <input type="text" name="username" placeholder="Username">
+                        <input type="text" name="username" placeholder="Username" required>
                     </div>                    
                     <div class="input-field">
                         <i class="fa fa-lock"></i>
-                        <input type="password" name="password" placeholder="Password">
+                        <input type="password" name="password" placeholder="Password" required>
                     </div>
                     <input name="submit2" type="submit" value="Register" class="btn solid">
                 </form>
