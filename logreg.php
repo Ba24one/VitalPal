@@ -120,11 +120,11 @@
                     <h2 class="title">Login</h2>
                     <div class="input-field">
                         <i class="fa fa-user"></i>
-                        <input type="text" name="username" placeholder="Username">
+                        <input type="text" name="username" placeholder="Username" required>
                     </div>
                     <div class="input-field">
                         <i class="fa fa-lock"></i>
-                        <input type="password" name="password" placeholder="Password">
+                        <input type="password" name="password" placeholder="Password" required>
                     </div>
                     <div class="input-field">
                         <i class="fa fa-anchor"></i>
