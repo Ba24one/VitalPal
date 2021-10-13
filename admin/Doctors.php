@@ -19,7 +19,7 @@ if(isset($_POST['submitUpdate'])){
 
     $updatestatus=new Doctor();
 
-    $update = $updatestatus->d_update($_REQUEST['name'],$_REQUEST['practice'], $_REQUEST['specialization'], $_REQUEST['mbbs'], $_REQUEST['username'], $_REQUEST['password'], $_REQUEST['status']);
+    $update = $updatestatus->d_update($_REQUEST['name'],$_REQUEST['practice'], $_REQUEST['specialization'], $_REQUEST['mbbs'], $_REQUEST['username'], $_REQUEST['status']);
     if($update){
         
         echo "<script>alert('Account updated successfully!');</script>";
@@ -55,7 +55,7 @@ else if(isset($_POST['submitInsert'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <head>
         <title>Admin-Doctors</title>
-        <!-- <link rel="stylesheet" href="../css/style_3.css?v=<?php echo time(); ?>"> -->
+        <link rel="stylesheet" href="../css/style_3.css?v=<?php echo time(); ?>">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
