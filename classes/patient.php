@@ -65,15 +65,47 @@
         }
 
         public function p_fetchdata(){
-
+            $result=mysqli_query($this->vpc,"SELECT * FROM patient");
+            return $result;
         }
 
-        public function p_fetchonerecord(){
-
+        public function p_fetchonerecord($patientid){
+            $oneresult=mysqli_query($this->vpc,"SELECT * FROM patient WHERE patient_id=$patientid");
+    	    return $oneresult;
         }
 
-        public function p_update(){
+        public function p_update($patientid, $name, $gender, $dob, $nic, $address, $email, $guardianName, $guardianNo, $guardianMail, $username, $password, $vaccType, $VaccDose){
+            $password = md5($password);       
 
+            $check = mysqli_query($this->vpc, "SELECT patient_id FROM patient WHERE patient_id='$patientid'");
+            $result = mysqli_num_rows($check);
+
+            if ($result > 0) {
+
+                $update = mysqli_query($this->vpc,"UPDATE patient SET p_name='$patientid', gender='$gender', p_dob='$dob',
+                nic='$nic', address='$address', email='$email', guardianName='$guardianName', guardianNo='$guardianNo', 
+                guardianMail='$guardianMail', p_username='$username', p_password='$password', vac_type='$vaccType', vac_dose='$VaccDose' WHERE patient_id='$patientid' ") or die(mysqli_error($this->dbh));
+                
+                return $update;
+                 
+            } else {
+                return false;
+            }
+        }
+
+        public function p_statusupdate($patientid, $status){
+            $check = mysqli_query($this->vpc, "SELECT patient_id FROM patient WHERE patient_id='$patientid'");
+            $result = mysqli_num_rows($check);
+
+            if ($result > 0) {
+
+                $update = mysqli_query($this->vpc,"UPDATE patient SET p_status='$status' WHERE patient_id='$patientid' ") or die(mysqli_error($this->dbh));
+                
+                return $update;
+                 
+            } else {
+                return false;
+            }
         }
 
     }
