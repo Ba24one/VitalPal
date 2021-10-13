@@ -19,12 +19,12 @@ if(isset($_POST['submitUpdate'])){
 
     $updatestatus=new Doctor();
 
-    $update = $updatestatus->d_update($_REQUEST['name'],$_REQUEST['practice'], $_REQUEST['specialization'], $_REQUEST['mbbs'], $_REQUEST['username'], $_REQUEST['status']);
+    $update = $updatestatus->d_update($_REQUEST['id'], $_REQUEST['name'],$_REQUEST['practice'], $_REQUEST['specialization'], $_REQUEST['mbbs'], $_REQUEST['username'], $_REQUEST['status']);
     if($update){
         
         echo "<script>alert('Account updated successfully!');</script>";
         // Code for redirection
-        echo "<script>window.location.href='Doctor.php'</script>";
+        echo "<script>window.location.href='Doctors.php'</script>";
     }
     else
     {

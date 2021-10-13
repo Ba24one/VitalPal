@@ -84,7 +84,7 @@
 
                 $update = mysqli_query($this->vpc,"UPDATE patient SET p_name='$patientid', gender='$gender', p_dob='$dob',
                 nic='$nic', address='$address', email='$email', guardianName='$guardianName', guardianNo='$guardianNo', 
-                guardianMail='$guardianMail', p_username='$username', p_password='$password', vac_type='$vaccType', vac_dose='$VaccDose' WHERE patient_id='$patientid' ") or die(mysqli_error($this->dbh));
+                guardianMail='$guardianMail', p_username='$username', p_password='$password', vac_type='$vaccType', vac_dose='$VaccDose' WHERE patient_id='$patientid' ") or die(mysqli_error($this->vpc));
                 
                 return $update;
                  
@@ -99,7 +99,7 @@
 
             if ($result > 0) {
 
-                $update = mysqli_query($this->vpc,"UPDATE patient SET p_status='$status' WHERE patient_id='$patientid' ") or die(mysqli_error($this->dbh));
+                $update = mysqli_query($this->vpc,"UPDATE patient SET p_status='$status' WHERE patient_id='$patientid' ") or die(mysqli_error($this->vpc));
                 
                 return $update;
                  

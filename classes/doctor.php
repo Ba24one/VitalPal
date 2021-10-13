@@ -77,7 +77,7 @@
             if ($result > 0) {
 
                 $update = mysqli_query($this->vpc,"UPDATE doctor SET d_name='$dname', place_of_practice='$practice', specialization='$specialization',
-                mbbs_no='$mbbs', d_username='$username', WHERE doctor_id='$doctorid' ") or die(mysqli_error($this->dbh));
+                mbbs_no='$mbbs', d_username='$username' WHERE doctor_id='$doctorid'") or die(mysqli_error($this->vpc));
                 echo "1";
                 return $update;
                  
