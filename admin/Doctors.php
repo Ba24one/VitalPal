@@ -18,6 +18,7 @@ if (isset($_REQUEST['q'])){
 if(isset($_POST['submitUpdate'])){
 
     // code the update function for doctors
+    // ABCD Testing
 
 }
 
