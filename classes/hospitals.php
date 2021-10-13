@@ -15,7 +15,7 @@
         }
 
         public function h_fetchdata(){
-            
+            // do this
         }
 
         public function h_fetchonerecord($newsid){
@@ -23,7 +23,7 @@
         }
 
         public function h_update(){
-
+            // do this 
         }
 
         public function h_delete(){

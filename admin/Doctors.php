@@ -1,6 +1,6 @@
 <?php
 // include function file
-include_once("../classes/patient.php");
+include_once("../classes/doctor.php");
 
 session_start();
 include_once '../classes/admin.php';
@@ -17,15 +17,35 @@ if (isset($_REQUEST['q'])){
 
 if(isset($_POST['submitUpdate'])){
 
-    // code the update function for doctors
-    // ABCD Testing
+    $updatestatus=new Doctor();
+
+    $update = $updatestatus->d_update($_REQUEST['name'],$_REQUEST['practice'], $_REQUEST['specialization'], $_REQUEST['mbbs'], $_REQUEST['username'], $_REQUEST['password'], $_REQUEST['status']);
+    if($update){
+        
+        echo "<script>alert('Account updated successfully!');</script>";
+        // Code for redirection
+        echo "<script>window.location.href='Doctor.php'</script>";
+    }
+    else
+    {
+        // Code for redirection
+        echo "<script>alert('Couldn't update status! Please Try Again!');</script>";
+    }
 
 }
 
 else if(isset($_POST['submitInsert'])){
 
-    // code the create function for doctors
+    $doctor=new Doctor();
 
+    $register = $doctor->d_create($_REQUEST['name'],$_REQUEST['practice'], $_REQUEST['specialization'],  $_REQUEST['mbbs'], $_REQUEST['username'], $_REQUEST['password']);
+    if($register){
+        echo "<script>alert('Inserted Successful!');</script>";
+    }
+    else
+    {
+        echo "<script>alert('Entered email address or username already exists!');</script>";
+    }
 }
 
 ?>
@@ -35,14 +55,14 @@ else if(isset($_POST['submitInsert'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <head>
         <title>Admin-Doctors</title>
-        <link rel="stylesheet" href="../css/style_3.css?v=<?php echo time(); ?>">
+        <!-- <link rel="stylesheet" href="../css/style_3.css?v=<?php echo time(); ?>"> -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
         <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css"> -->
         <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     </head>
-<body>
+    <body>
 
     <input type="checkbox" name="" id="sidebar-toggle">
 
@@ -178,7 +198,7 @@ else if(isset($_POST['submitInsert'])){
                         </div>
                         <div class="input-value">
                             <small>Specialization</small>
-                            <input type="text" name="address" placeholder="General Practitioner" required>
+                            <input type="text" name="specialization" placeholder="General Practitioner" required>
                         </div>
                         <div class="input-value">
                             <small>MBBS No.</small>
@@ -317,9 +337,68 @@ else if(isset($_POST['submitInsert'])){
                                     </td>
                                 </tr>
                                 
+                                <?php
+                                    include_once '../classes/doctor.php';
+                                    $fetchdata=new Doctor();
+                                    $sql=$fetchdata->d_fetchdata();
+                                    $cnt=1;
+                                    while($row=mysqli_fetch_array($sql))
+                                    {
                                 
-                                // copy and paste codes from line 279 to 340 from Patients.php and change according to the table heading tha I've given
-
+                                echo '
+                                <tr>
+                                    <td>
+                                        <div>
+                                            <span class="indicator"></span>
+                                        </div>
+                                    </td>
+                                    <td id=id'.$cnt.'>
+                                        <div>
+                                            '.$row['doctor_id'].'
+                                        </div>
+                                    </td>
+                                    <td id=name'.$cnt.'>
+                                        <div>
+                                            '.$row['d_name'].'
+                                        </div>
+                                    </td>
+                                    <td id=practice'.$cnt.'>
+                                        <div>
+                                            '.$row['place_of_practice'].'
+                                        </div>
+                                    </td>
+                                    <td id=specialization'.$cnt.'>
+                                        <div>
+                                            '.$row['specialization'].'
+                                        </div>
+                                    </td>
+                                    <td id=mbbs'.$cnt.'>
+                                        <div>
+                                            '.$row['mbbs_no'].'
+                                        </div>
+                                    </td>
+                                    <td id=username'.$cnt.'>
+                                        <div>
+                                            '.$row['d_username'].'
+                                        </div>
+                                    </td>
+                                    <td id=status'.$cnt.'>
+                                        <div>
+                                            '.$row['d_status'].'
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="update">
+                                            
+                                            <button  id="updaterow" onclick="loadData('.$cnt.')"><span class="fa fa-pencil"></span></button>
+                                            
+                                        </div>
+                                    </td>
+                                </tr>       
+                                ';
+                                   $cnt++;
+                                    }
+                                ?>                                                         
 
                             </tbody>
                         </table>
@@ -390,5 +469,5 @@ else if(isset($_POST['submitInsert'])){
     </script>
 
     
-</body>
+    </body>
 </html>

@@ -10,8 +10,19 @@
             $this->vpc=$con;
         }
 
-        public function d_create(){
-            // For the time beign we are hardcoding the doctors details
+        public function d_create($dname, $practice, $specialization, $mbbs, $username, $password){
+            $password = md5($password);
+            
+            $checkuser = mysqli_query($this->vpc, "SELECT doctor_id FROM doctor WHERE d_username='$username'");            
+            $result1 = mysqli_num_rows($checkuser);               
+
+            if ($result1 == 0) {
+                $register = mysqli_query($this->vpc, "INSERT INTO doctor (d_name, place_of_practice, specialization, mbbs_no, d_username, d_password, d_status) VALUES 
+                ('$dname','$practice','$specialization','$mbbs','$username', '$password', 'a')") or die(mysqli_error($this->vpc));                   
+                return $register;
+            } else {
+                return false;
+            }
         }
 
         public function d_login($username, $password){
@@ -50,15 +61,30 @@
         }
 
         public function d_fetchdata(){
-
+            $result=mysqli_query($this->vpc,"SELECT * FROM doctor");
+            return $result;
         }
 
         public function d_fetchonerecord(){
 
         }
 
-        public function d_update(){
+        public function d_update($doctorid, $dname, $practice, $specialization, $mbbs, $username, $password){
+            $password = md5($password);       
 
+            $check = mysqli_query($this->vpc, "SELECT doctor_id FROM doctor WHERE doctor_id='$doctorid'");
+            $result = mysqli_num_rows($check);
+
+            if ($result > 0) {
+
+                $update = mysqli_query($this->vpc,"UPDATE doctor SET d_name='$dname', place_of_practice='$practice', specialization='$specialization',
+                mbbs_no='$mbbs', d_username='$username', d_password='$password' WHERE doctor_id='$doctorid' ") or die(mysqli_error($this->dbh));
+                
+                return $update;
+                 
+            } else {
+                return false;
+            }
         }
 
     }
