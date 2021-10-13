@@ -55,14 +55,14 @@
             $admin = new Admin();
             if ($admin->a_session())
             {
-                header("location:login_tests/Admin.php");
+                header("location:admin/Dashboard.php");
             }
 
             $admin = new Admin();
             if ($_SERVER["REQUEST_METHOD"] == "POST"){
                 $login = $admin->a_login($_REQUEST['username'],$_REQUEST['password']);
                 if($login){
-                    header("location:login_tests/Admin.php");
+                    header("location:admin/Dashboard.php");
                 }
                 else
                 {
