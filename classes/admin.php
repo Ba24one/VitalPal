@@ -67,7 +67,7 @@
 
         }
 
-        public function a_update($adminid, $aname, $role, $dob, $nic, $username){
+        public function a_update($adminid, $aname, $role, $dob, $nic, $username, $status){
             $check = mysqli_query($this->vpc, "SELECT admin_id FROM admin WHERE admin_id='$adminid'");
             $result = mysqli_num_rows($check);
 

@@ -19,7 +19,7 @@ if(isset($_POST['submitUpdate'])){
 
     $updatestatus=new Admin();
 
-    $update = $updatestatus->a_update($_REQUEST['name'],$_REQUEST['role'], $_REQUEST['dob'], $_REQUEST['nic'], $_REQUEST['username'], $_REQUEST['status']);
+    $update = $updatestatus->a_update($_REQUEST['id'], $_REQUEST['name'],$_REQUEST['role'], $_REQUEST['dob'], $_REQUEST['nic'], $_REQUEST['username'], $_REQUEST['status']);
     if($update){
         
         echo "<script>alert('Account updated successfully!');</script>";

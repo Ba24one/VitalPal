@@ -1,6 +1,6 @@
 <?php
 // include function file
-include_once("../classes/patient.php");
+include_once("../classes/hospitals.php");
 
 session_start();
 include_once '../classes/admin.php';
@@ -17,14 +17,35 @@ if (isset($_REQUEST['q'])){
 
 if(isset($_POST['submitUpdate'])){
 
-    // code the update function for hospitals
+    $updatestatus=new Hospital();
+
+    $update = $updatestatus->h_update($_REQUEST['id'], $_REQUEST['name'],$_REQUEST['location'], $_REQUEST['contact'], $_REQUEST['type'], $_REQUEST['status']);
+    if($update){
+        
+        echo "<script>alert('Account updated successfully!');</script>";
+        // Code for redirection
+        echo "<script>window.location.href='Hospitals.php'</script>";
+    }
+    else
+    {
+        // Code for redirection
+        echo "<script>alert('Couldn't update status! Please Try Again!');</script>";
+    }
 
 }
 
 else if(isset($_POST['submitInsert'])){
 
-    // code the create function for hospitals
+    $hospital=new Hospital();
 
+    $register = $hospital->h_create($_REQUEST['name'],$_REQUEST['location'], $_REQUEST['contact'],  $_REQUEST['type']);
+    if($register){
+        echo "<script>alert('Inserted Successful!');</script>";
+    }
+    else
+    {
+        echo "<script>alert('Entered email address or username already exists!');</script>";
+    }
 }
 
 ?>
@@ -297,9 +318,63 @@ else if(isset($_POST['submitInsert'])){
                                     </td>
                                 </tr>
                                 
+                                <?php
+                                    include_once '../classes/hospitals.php';
+                                    $fetchdata=new Hospital();
+                                    $sql=$fetchdata->h_fetchdata();
+                                    $cnt=1;
+                                    while($row=mysqli_fetch_array($sql))
+                                    {
                                 
-                                // copy and paste codes from line 279 to 340 from Patients.php and change according to the table heading tha I've given
-
+                                echo '
+                                <tr>
+                                    <td>
+                                        <div>
+                                            <span class="indicator"></span>
+                                        </div>
+                                    </td>
+                                    <td id=id'.$cnt.'>
+                                        <div>
+                                            '.$row['hospital_ID'].'
+                                        </div>
+                                    </td>
+                                    <td id=name'.$cnt.'>
+                                        <div>
+                                            '.$row['name'].'
+                                        </div>
+                                    </td>
+                                    <td id=location'.$cnt.'>
+                                        <div>
+                                            '.$row['location'].'
+                                        </div>
+                                    </td>
+                                    <td id=contact'.$cnt.'>
+                                        <div>
+                                            '.$row['contact'].'
+                                        </div>
+                                    </td>
+                                    <td id=type'.$cnt.'>
+                                        <div>
+                                            '.$row['type'].'
+                                        </div>
+                                    </td>                                    
+                                    <td id=status'.$cnt.'>
+                                        <div>
+                                            '.$row['h_status'].'
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="update">
+                                            
+                                            <button  id="updaterow" onclick="loadData('.$cnt.')"><span class="fa fa-pencil"></span></button>
+                                            
+                                        </div>
+                                    </td>
+                                </tr>       
+                                ';
+                                   $cnt++;
+                                    }
+                                ?>                                                           
 
                             </tbody>
                         </table>
