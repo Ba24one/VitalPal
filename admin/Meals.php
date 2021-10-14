@@ -257,10 +257,10 @@ else if(isset($_POST['submitInsert'])){
                         <h2>Meals</h2>
                         <input type="text" name="search" id="search" placeholder="Search here...." >
                         <select data="fa fa-filter" name="filter" class="searchbyfilter" id="searchfilter" required>
-                            <option value="1">Meal Type</option>
-                            <option value="2">Diet Type</option>
-                            <option value="3">Diet Plan</option>
-                            <option value="4">Status</option>
+                            <option value="2">Meal Type</option>
+                            <option value="3">Diet Type</option>
+                            <option value="4">Diet Plan</option>
+                            <option value="5">Status</option>
                         </select>
                     </div>
                     <div class="table-responsive">
@@ -439,7 +439,7 @@ else if(isset($_POST['submitInsert'])){
         function loadData(rowNo){
             //alert(rowNo);
             document.getElementById("m_id").value = document.getElementById('id'+ rowNo).innerText;
-            document.getElementById("m_mealType").value = document.getElementById('name'+ rowNo).innerText;
+            document.getElementById("m_mealType").value = document.getElementById('mealType'+ rowNo).innerText;
             document.getElementById("m_dietType").value = document.getElementById('dietType'+ rowNo).innerText;
             document.getElementById("m_dietPlan").value = document.getElementById('dietPlan'+ rowNo).innerText;
             document.getElementById("m_status").value = document.getElementById('status'+ rowNo).innerText;
