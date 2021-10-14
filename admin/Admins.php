@@ -1,6 +1,6 @@
 <?php
 // include function file
-include_once("../classes/patient.php");
+include_once("../classes/admin.php");
 
 session_start();
 include_once '../classes/admin.php';
@@ -17,13 +17,35 @@ if (isset($_REQUEST['q'])){
 
 if(isset($_POST['submitUpdate'])){
 
-    // code the update function for admins
+    $updatestatus=new Admin();
+
+    $update = $updatestatus->a_update($_REQUEST['name'],$_REQUEST['role'], $_REQUEST['dob'], $_REQUEST['nic'], $_REQUEST['username'], $_REQUEST['status']);
+    if($update){
+        
+        echo "<script>alert('Account updated successfully!');</script>";
+        // Code for redirection
+        echo "<script>window.location.href='Admins.php'</script>";
+    }
+    else
+    {
+        // Code for redirection
+        echo "<script>alert('Couldn't update status! Please Try Again!');</script>";
+    }
 
 }
 
 else if(isset($_POST['submitInsert'])){
 
-    // code the create function for admins
+    $admin=new Admin();
+
+    $register = $admin->create($_REQUEST['name'],$_REQUEST['role'], $_REQUEST['dob'],  $_REQUEST['nic'], $_REQUEST['username'], $_REQUEST['password']);
+    if($register){
+        echo "<script>alert('Inserted Successful!');</script>";
+    }
+    else
+    {
+        echo "<script>alert('Entered email address or username already exists!');</script>";
+    }
 
 }
 
@@ -169,11 +191,11 @@ else if(isset($_POST['submitInsert'])){
                     <div class="insert-details">
                         <div class="input-value">
                             <small>Admin Name</small>
-                            <input type="text" name="name"  placeholder="KH Senaratne" required>
+                            <input type="text" name="name" id="name" placeholder="KH Senaratne" required>
                         </div>
                         <div class="input-value">
                             <small>Role</small>
-                            <input type="text" name="role" placeholder="Ordinary" required>
+                            <input type="text" name="role" id="role" placeholder="Ordinary" required>
                         </div>
                         <div class="input-value">
                             <small>Date of Birth</small>
@@ -181,15 +203,15 @@ else if(isset($_POST['submitInsert'])){
                         </div>
                         <div class="input-value">
                             <small>NIC</small>
-                            <input type="text" name="nic" placeholder="855485635V" required>
+                            <input type="text" name="nic" id="nic" placeholder="855485635V" required>
                         </div>
                         <div class="input-value">
                             <small>Username</small>
-                            <input type="text" name="username" placeholder="good admin" required>
+                            <input type="text" name="username" id="username" placeholder="good admin" required>
                         </div>
                         <div class="input-value">
                             <small>Password</small>
-                            <input type="text" name="password" placeholder="ab24cd" required>
+                            <input type="text" name="password" id="dob"placeholder="ab24cd" required>
                         </div>
                     </div>
                     <div class="insert-elements">
@@ -210,7 +232,7 @@ else if(isset($_POST['submitInsert'])){
 
                         <div class="form-input">
                             <small>ID </small> <br>
-                            <input  type="text" name="id" id="a_id" required data-readonly>
+                            <input  type="text" name="a_id" id="a_id" required data-readonly>
                         </div>
                         <div class="form-input">
                             <small>Admin Name </small> <br>
@@ -218,7 +240,7 @@ else if(isset($_POST['submitInsert'])){
                         </div>
                         <div class="form-input">
                             <small>Role</small> <br>
-                            <input  type="text" name="practice" id="a_role" required>
+                            <input  type="text" name="role" id="a_role" required>
                         </div>
                         <div class="form-input">
                             <small>Date of Birth</small> <br>
@@ -315,7 +337,68 @@ else if(isset($_POST['submitInsert'])){
                                 </tr>
                                 
                                 
-                                // copy and paste codes from line 279 to 340 from Patients.php and change according to the table heading tha I've given
+                                <?php
+                                    include_once '../classes/admin.php';
+                                    $fetchdata=new Admin();
+                                    $sql=$fetchdata->a_fetchdata();
+                                    $cnt=1;
+                                    while($row=mysqli_fetch_array($sql))
+                                    {
+                                
+                                echo '
+                                <tr>
+                                    <td>
+                                        <div>
+                                            <span class="indicator"></span>
+                                        </div>
+                                    </td>
+                                    <td id=id'.$cnt.'>
+                                        <div>
+                                            '.$row['admin_id'].'
+                                        </div>
+                                    </td>
+                                    <td id=name'.$cnt.'>
+                                        <div>
+                                            '.$row['a_name'].'
+                                        </div>
+                                    </td>
+                                    <td id=role'.$cnt.'>
+                                        <div>
+                                            '.$row['role'].'
+                                        </div>
+                                    </td>
+                                    <td id=dob'.$cnt.'>
+                                        <div>
+                                            '.$row['dob'].'
+                                        </div>
+                                    </td>
+                                    <td id=nic'.$cnt.'>
+                                        <div>
+                                            '.$row['nic'].'
+                                        </div>
+                                    </td>
+                                    <td id=username'.$cnt.'>
+                                        <div>
+                                            '.$row['a_username'].'
+                                        </div>
+                                    </td>
+                                    <td id=status'.$cnt.'>
+                                        <div>
+                                            '.$row['a_status'].'
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="update">
+                                            
+                                            <button  id="updaterow" onclick="loadData('.$cnt.')"><span class="fa fa-pencil"></span></button>
+                                            
+                                        </div>
+                                    </td>
+                                </tr>       
+                                ';
+                                   $cnt++;
+                                    }
+                                ?>                           
 
 
                             </tbody>
@@ -375,7 +458,7 @@ else if(isset($_POST['submitInsert'])){
         // load the row selected from the table into the update form
         function loadData(rowNo){
             //alert(rowNo);
-            document.getElementById("a_id").value = document.getElementById('id'+ rowNo).innerText;
+            document.getElementById("a_id").value = document.getElementById('a_id'+ rowNo).innerText;
             document.getElementById("a_name").value = document.getElementById('name'+ rowNo).innerText;
             document.getElementById("a_role").value = document.getElementById('role'+ rowNo).innerText;
             document.getElementById("a_dob").value = document.getElementById('dob'+ rowNo).innerText;
