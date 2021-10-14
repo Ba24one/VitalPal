@@ -232,7 +232,7 @@ else if(isset($_POST['submitInsert'])){
 
                         <div class="form-input">
                             <small>ID </small> <br>
-                            <input  type="text" name="a_id" id="a_id" required data-readonly>
+                            <input  type="text" name="id" id="a_id" required data-readonly>
                         </div>
                         <div class="form-input">
                             <small>Admin Name </small> <br>
@@ -458,7 +458,7 @@ else if(isset($_POST['submitInsert'])){
         // load the row selected from the table into the update form
         function loadData(rowNo){
             //alert(rowNo);
-            document.getElementById("a_id").value = document.getElementById('a_id'+ rowNo).innerText;
+            document.getElementById("a_id").value = document.getElementById('id'+ rowNo).innerText;
             document.getElementById("a_name").value = document.getElementById('name'+ rowNo).innerText;
             document.getElementById("a_role").value = document.getElementById('role'+ rowNo).innerText;
             document.getElementById("a_dob").value = document.getElementById('dob'+ rowNo).innerText;
