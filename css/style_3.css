@@ -143,7 +143,17 @@ body{
 }
 
 .sidebar-menu li{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 25px;
+    padding-left: 10px;
+    border-radius: 10px;
     margin-bottom: 14px;
+}
+
+.sidebar-menu li:hover{
+    background: #283642;
 }
 
 .sidebar-menu li a{
