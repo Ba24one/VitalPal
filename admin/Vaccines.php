@@ -179,6 +179,10 @@ else if(isset($_POST['submitInsert'])){
                             <small>Location</small>
                             <input type="text" name="location"  placeholder="MoH" required>
                         </div>
+                        <div class="input-value">
+                            <small>Date</small>
+                            <input type="text" id="date" name="date" placeholder="MM-DD-YYYY" onfocus="(this.type='date')" onblur="(this.type='text')" required>
+                        </div>
                     </div>
                     <div class="insert-elements">
                         <input id="reset1" type="reset" name="reset"  class="reset-btn" value="Reset">
@@ -211,6 +215,10 @@ else if(isset($_POST['submitInsert'])){
                         <div class="form-input">
                             <small>Location</small> <br>
                             <input  type="text" name="location" id="v_location" required>
+                        </div>
+                        <div class="form-input">
+                            <small>Date</small> <br>
+                            <input type="text" id="v_date" name="date" onfocus="(this.type='date')" onblur="(this.type='text')" required>
                         </div>
                         <div class="form-input">
                             <small>Status </small> <br>
@@ -269,6 +277,11 @@ else if(isset($_POST['submitInsert'])){
                                     <td>
                                         <div>
                                             <p>Location</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <p>Date</p>
                                         </div>
                                     </td>
                                     <td>
@@ -373,6 +386,22 @@ else if(isset($_POST['submitInsert'])){
             document.getElementById("v_location").value = document.getElementById('location'+ rowNo).innerText;
             document.getElementById("v_status").value = document.getElementById('status'+ rowNo).innerText;
         }
+
+        //keep the max date as of today
+        var today = new Date();
+        var day = today.getDate();
+        var month = today.getMonth()+1; //January is 0!
+        var year = today.getFullYear();
+        if(day<10){
+                day='0'+day
+            } 
+            if(month<10){
+                month='0'+month
+            } 
+
+        today = year+'-'+month+'-'+day;
+        document.getElementById("date").setAttribute("min", today); 
+        document.getElementById("v_date").setAttribute("min", today); 
 
     </script>
 
