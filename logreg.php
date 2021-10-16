@@ -11,14 +11,14 @@
             $patient = new Patient();
             if ($patient->p_session())
             {
-                header("location:login_tests/Patient.php");
+                header("location:patient/Home.php");
             }
 
             $patient = new Patient();
             if ($_SERVER["REQUEST_METHOD"] == "POST"){
                 $login = $patient->p_login($_REQUEST['username'],$_REQUEST['password']);
                 if($login){
-                    header("location:login_tests/Patient.php");
+                    header("location:patient/Home.php");
                 }
                 else
                 {
