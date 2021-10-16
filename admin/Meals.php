@@ -1,6 +1,6 @@
 <?php
 // include function file
-include_once("../classes/patient.php");
+include_once("../classes/mealplan.php");
 
 session_start();
 include_once '../classes/admin.php';
@@ -17,14 +17,35 @@ if (isset($_REQUEST['q'])){
 
 if(isset($_POST['submitUpdate'])){
 
-    // code the update function for meals
+    $updatestatus=new Mealplan();
+
+    $update = $updatestatus->m_update($_REQUEST['id'], $_REQUEST['mealType'],$_REQUEST['dietType'], $_REQUEST['dietPlan'], $_REQUEST['status']);
+    if($update){
+        
+        echo "<script>alert('Account updated successfully!');</script>";
+        // Code for redirection
+        echo "<script>window.location.href='Meals.php'</script>";
+    }
+    else
+    {
+        // Code for redirection
+        echo "<script>alert('Couldn't update status! Please Try Again!');</script>";
+    }
 
 }
 
 else if(isset($_POST['submitInsert'])){
 
-    // code the create function for meals
+    $meal=new Mealplan();
 
+    $register = $meal->m_create($_REQUEST['mealType'],$_REQUEST['dietType'], $_REQUEST['dietPlan']);
+    if($register){
+        echo "<script>alert('Inserted Successful!');</script>";
+    }
+    else
+    {
+        echo "<script>alert('Entered email address or username already exists!');</script>";
+    }
 }
 
 ?>
@@ -168,12 +189,16 @@ else if(isset($_POST['submitInsert'])){
                 <form action="" method="POST">
                     <div class="insert-details">
                         <div class="input-value">
-                            <small>Type</small>
-                            <input type="text" name="name"  placeholder="Colombo Teaching Hospital" required>
+                            <small>Meal Type</small>
+                            <input type="text" name="mealType"  placeholder="Lunch" required>
                         </div>
                         <div class="input-value">
-                            <small>Description</small>
-                            <textarea type="text" name="description" placeholder="Add your description" required></textarea>
+                            <small>Diet Type</small>
+                            <input type="text" name="dietType"  placeholder="Diarrhea" required>
+                        </div>
+                        <div class="input-value">
+                            <small>Diet Plan</small>
+                            <textarea type="text" name="dietPlan" placeholder="Add the plan" required></textarea>
                         </div>
                     </div>
                     <div class="insert-elements">
@@ -197,12 +222,16 @@ else if(isset($_POST['submitInsert'])){
                             <input  type="text" name="id" id="m_id" required data-readonly>
                         </div>
                         <div class="form-input">
-                            <small>Type</small> <br>
-                            <input  type="text" name="type" id="m_type" required>
+                            <small>Meal Type</small> <br>
+                            <input  type="text" name="mealType" id="m_mealType" required>
                         </div>
                         <div class="form-input">
-                            <small>Decription</small> <br>
-                            <textarea  type="text" name="description" id="m_description" required></textarea>
+                            <small>Diet Type</small> <br>
+                            <input  type="text" name="dietType" id="m_dietType" required>
+                        </div>
+                        <div class="form-input">
+                            <small>Diet Plan</small> <br>
+                            <textarea  type="text" name="dietPlan" id="m_dietPlan" required></textarea>
                         </div>
                         <div class="form-input">
                             <small>Status </small> <br>
@@ -228,9 +257,10 @@ else if(isset($_POST['submitInsert'])){
                         <h2>Meals</h2>
                         <input type="text" name="search" id="search" placeholder="Search here...." >
                         <select data="fa fa-filter" name="filter" class="searchbyfilter" id="searchfilter" required>
-                            <option value="2">Type</option>
-                            <option value="3">Description</option>
-                            <option value="4">Status</option>
+                            <option value="2">Meal Type</option>
+                            <option value="3">Diet Type</option>
+                            <option value="4">Diet Plan</option>
+                            <option value="5">Status</option>
                         </select>
                     </div>
                     <div class="table-responsive">
@@ -249,12 +279,17 @@ else if(isset($_POST['submitInsert'])){
                                     </td>
                                     <td>
                                         <div>
-                                            <p>Type</p>
+                                            <p>Meal Type</p>
                                         </div>
                                     </td>
                                     <td>
                                         <div>
-                                            <p>Description</p>
+                                            <p>Diet Type</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <p>Diet Plan</p>
                                         </div>
                                     </td>
                                     <td>
@@ -269,8 +304,58 @@ else if(isset($_POST['submitInsert'])){
                                     </td>
                                 </tr>
                                 
+                                <?php
+                                    include_once '../classes/mealplan.php';
+                                    $fetchdata=new Mealplan();
+                                    $sql=$fetchdata->m_fetchdata();
+                                    $cnt=1;
+                                    while($row=mysqli_fetch_array($sql))
+                                    {
                                 
-                                // copy and paste codes from line 279 to 340 from Patients.php and change according to the table heading tha I've given
+                                echo '
+                                <tr>
+                                    <td>
+                                        <div>
+                                            <span class="indicator"></span>
+                                        </div>
+                                    </td>
+                                    <td id=id'.$cnt.'>
+                                        <div>
+                                            '.$row['meal_ID'].'
+                                        </div>
+                                    </td>
+                                    <td id=mealType'.$cnt.'>
+                                        <div>
+                                            '.$row['meal_type'].'
+                                        </div>
+                                    </td>
+                                    <td id=dietType'.$cnt.'>
+                                        <div>
+                                            '.$row['diet_type'].'
+                                        </div>
+                                    </td>     
+                                    <td id=dietPlan'.$cnt.'>
+                                        <div>
+                                            '.$row['diet_plan'].'
+                                        </div>
+                                    </td>                                                                       
+                                    <td id=status'.$cnt.'>
+                                        <div>
+                                            '.$row['m_status'].'
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="update">
+                                            
+                                            <button  id="updaterow" onclick="loadData('.$cnt.')"><span class="fa fa-pencil"></span></button>
+                                            
+                                        </div>
+                                    </td>
+                                </tr>       
+                                ';
+                                   $cnt++;
+                                    }
+                                ?>                                 
 
 
                             </tbody>
@@ -304,7 +389,7 @@ else if(isset($_POST['submitInsert'])){
         }
 
         document.getElementById('reset2').onclick = function(){
-            var txtArea = document.getElementById("m_description");
+            var txtArea = document.getElementById("m_dietPlan");
             txtArea.setAttribute("style", "height: 40px");
         }
 
@@ -354,8 +439,9 @@ else if(isset($_POST['submitInsert'])){
         function loadData(rowNo){
             //alert(rowNo);
             document.getElementById("m_id").value = document.getElementById('id'+ rowNo).innerText;
-            document.getElementById("m_type").value = document.getElementById('name'+ rowNo).innerText;
-            document.getElementById("m_description").value = document.getElementById('description'+ rowNo).innerText;
+            document.getElementById("m_mealType").value = document.getElementById('mealType'+ rowNo).innerText;
+            document.getElementById("m_dietType").value = document.getElementById('dietType'+ rowNo).innerText;
+            document.getElementById("m_dietPlan").value = document.getElementById('dietPlan'+ rowNo).innerText;
             document.getElementById("m_status").value = document.getElementById('status'+ rowNo).innerText;
         }
 
