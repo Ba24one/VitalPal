@@ -11,8 +11,8 @@
         }
         
 
-        public function hs_fetchdata(){
-            $result=mysqli_query($this->vpc,"SELECT * FROM patient INNER JOIN patient_diary ON patient.patient_id = patient_diary.patient_id");
+        public function hs_fetchdata($id){
+            $result=mysqli_query($this->vpc,"SELECT * FROM patient_diary WHERE patient_id='$id'");
             return $result;
         }      
 

@@ -137,19 +137,60 @@ if(isset($_POST['submitInsert'])){
             <div class="insert-container" id="insert-container">
 
                     
-                <?php 
-                   
-                    if (date("m/d/Y") > 18){
-                        
-                        if (there is no record for today){
-                            // code set 1 - if there is no record for today
-                        } else{
-                            // code set 2 - if there is already a record for today
-                        }
-                    } else{
-                        // code set 3 - if there the time is not yet 6
-                    }
+            <?php
 
+                if (date('H') > 12){
+
+                    $myDate = date('m/d/Y');
+
+                    include_once '../classes/config.php';
+
+                    $con = mysqli_connect(HOST, USER, PASS, DB) or die('Connection Error! '.mysqli_error($con));
+
+                    $checkuser = mysqli_query($con, "SELECT * FROM patient_diary WHERE patient_id = '$id' AND date = '$myDate'") or die(mysqli_error($con));
+                    $result = mysqli_num_rows($checkuser);
+                
+                    if ($result){?>
+                        <div class="head">
+                            <div class="title">INSERT STATUS</div>
+                        </div>
+                        <form action="" method="POST">
+                            <div class="insert-details">
+                                <div class="input-value">
+                                    <small>Condition</small>
+                                    <select name="condition" class="conditionscale" required>
+                                        <option value="" selected hidden>Select status</option>
+                                        <option value="much better">Much Better</option>
+                                        <option value="better">Better</option>
+                                        <option value="same">Same</option>
+                                        <option value="worse">Worse</option>
+                                        <option value="much worse">Much Worse</option>
+                                    </select>
+                                </div>
+                                <div class="input-value">
+                                    <small>Food</small>
+                                    <textarea type="text" name="role" placeholder="What did you have?" required></textarea>
+                                </div>
+                                <div class="input-value">
+                                    <small>Date</small>
+                                    <input type="text" id="date" name="date" placeholder="MM-DD-YYYY" onfocus="(this.type='date')" onblur="(this.type='text')" required>
+                                </div>
+                            </div>
+                            <div class="insert-elements">
+                                <input id="reset" type="reset" name="reset"  class="reset-btn" value="Reset">
+                                <input type="submit" name="submitInsert" class="insert-btn" value="Enter" id="insertbtn">
+                            </div>
+                    <?php } else{ ?>
+                        <div class="no-head">
+                            <div class="title">You can enter your status details only once a day.</div>
+                        </div>
+                    <?php } 
+                } else{ ?>
+                    <div class="no-head">
+                        <div class="title">You are allowed to enter your status everyday after 6 p.m only</div>
+                    </div>
+                <?php
+                }
                 ?>
 
                     <!-- <div class="head">
@@ -237,7 +278,7 @@ if(isset($_POST['submitInsert'])){
                                 <?php
                                     include_once '../classes/health_status.php';
                                     $fetchdata=new HealthStatus();
-                                    $sql=$fetchdata->hs_fetchdata();
+                                    $sql=$fetchdata->hs_fetchdata($id);
                                     $cnt=1;
                                     while($row=mysqli_fetch_array($sql))
                                     {
