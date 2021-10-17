@@ -1,4 +1,6 @@
 <?php
+// include function file
+include_once("../classes/hospitals.php");
 
 session_start();
 include_once '../classes/patient.php';
@@ -169,7 +171,46 @@ if (isset($_REQUEST['q'])){
                                 </td>
                             </tr>
                             
-                            // copy and paste codes from line 279 to 340 from Patients.php and change according to the table heading tha I've given
+                            <?php
+                                    include_once '../classes/hospitals.php';
+                                    $fetchdata=new Hospital();
+                                    $sql=$fetchdata->h_fetchdata();
+                                    $cnt=1;
+                                    while($row=mysqli_fetch_array($sql))
+                                    {
+                                
+                                echo '
+                                <tr>
+                                    <td>
+                                        <div>
+                                            <span class="indicator"></span>
+                                        </div>
+                                    </td>                                    
+                                    <td id=name'.$cnt.'>
+                                        <div>
+                                            '.$row['name'].'
+                                        </div>
+                                    </td>
+                                    <td id=location'.$cnt.'>
+                                        <div>
+                                            '.$row['location'].'
+                                        </div>
+                                    </td>
+                                    <td id=contact'.$cnt.'>
+                                        <div>
+                                            '.$row['contact'].'
+                                        </div>
+                                    </td>
+                                    <td id=type'.$cnt.'>
+                                        <div>
+                                            '.$row['type'].'
+                                        </div>
+                                    </td>                                    
+                                </tr>       
+                                ';
+                                   $cnt++;
+                                    }
+                                ?>                      
 
                         </tbody>
                     </table>

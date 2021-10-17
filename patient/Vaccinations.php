@@ -1,5 +1,8 @@
 <?php
 
+// include function file
+include_once("../classes/vaccine.php");
+
 session_start();
 include_once '../classes/patient.php';
 $patient = new Patient;
@@ -169,7 +172,46 @@ if (isset($_REQUEST['q'])){
                                 </td>
                             </tr>
                             
-                            // copy and paste codes from line 279 to 340 from Patients.php and change according to the table heading tha I've given
+                            <?php
+                                    include_once '../classes/vaccine.php';
+                                    $fetchdata=new Vaccine();
+                                    $sql=$fetchdata->v_fetchdata();
+                                    $cnt=1;
+                                    while($row=mysqli_fetch_array($sql))
+                                    {
+                                
+                                echo '
+                                <tr>
+                                    <td>
+                                        <div>
+                                            <span class="indicator"></span>
+                                        </div>
+                                    </td>                                    
+                                    <td id=type'.$cnt.'>
+                                        <div>
+                                            '.$row['type'].'
+                                        </div>
+                                    </td>
+                                    <td id=description'.$cnt.'>
+                                        <div>
+                                            '.$row['description'].'
+                                        </div>
+                                    </td>     
+                                    <td id=location'.$cnt.'>
+                                        <div>
+                                            '.$row['location'].'
+                                        </div>
+                                    </td>   
+                                    <td id=date'.$cnt.'>
+                                        <div>
+                                            '.$row['date'].'
+                                        </div>
+                                    </td>                                
+                                </tr>       
+                                ';
+                                   $cnt++;
+                                    }
+                                ?>                     
 
                         </tbody>
                     </table>
