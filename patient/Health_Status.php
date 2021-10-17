@@ -1,5 +1,8 @@
 <?php
 
+// include function file
+include_once("../classes/health_status.php");
+
 session_start();
 include_once '../classes/patient.php';
 $patient = new Patient;
@@ -133,7 +136,21 @@ if(isset($_POST['submitInsert'])){
         <main>
             <div class="insert-container" id="insert-container">
 
-                    // code set 1 - if there is no record for today
+                    
+                <?php 
+                   
+                    if (date("m/d/Y") > 18){
+                        
+                        if (there is no record for today){
+                            // code set 1 - if there is no record for today
+                        } else{
+                            // code set 2 - if there is already a record for today
+                        }
+                    } else{
+                        // code set 3 - if there the time is not yet 6
+                    }
+
+                ?>
 
                     <!-- <div class="head">
                         <div class="title">INSERT STATUS</div>
@@ -217,7 +234,41 @@ if(isset($_POST['submitInsert'])){
                                     </td>
                                 </tr>
                                 
-                                // copy and paste codes from line 279 to 340 from Patients.php and change according to the table heading tha I've given
+                                <?php
+                                    include_once '../classes/health_status.php';
+                                    $fetchdata=new HealthStatus();
+                                    $sql=$fetchdata->hs_fetchdata();
+                                    $cnt=1;
+                                    while($row=mysqli_fetch_array($sql))
+                                    {
+                                
+                                echo '
+                                <tr>
+                                    <td>
+                                        <div>
+                                            <span class="indicator"></span>
+                                        </div>
+                                    </td>                                    
+                                    <td id=condition'.$cnt.'>
+                                        <div>
+                                            '.$row['p_condition'].'
+                                        </div>
+                                    </td>
+                                    <td id=food'.$cnt.'>
+                                        <div>
+                                            '.$row['food'].'
+                                        </div>
+                                    </td>
+                                    <td id=date'.$cnt.'>
+                                        <div>
+                                            '.$row['date'].'
+                                        </div>
+                                    </td>                                  
+                                </tr>       
+                                ';
+                                   $cnt++;
+                                    }
+                                ?>                         
 
                             </tbody>
                         </table>
