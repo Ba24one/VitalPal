@@ -18,7 +18,16 @@ if (isset($_REQUEST['q'])){
 
 if(isset($_POST['submitInsert'])){
 
-    // code the insert function for patientdaiary
+    $healthStatus=new HealthStatus();
+
+    $register = $healthStatus->hs_create($_REQUEST['condition'],$_REQUEST['food'], $_REQUEST['date'],  $id);
+    if($register){
+        echo "<script>alert('Inserted Successful!');</script>";
+    }
+    else
+    {
+        echo "<script>alert('Entered email address or username already exists!');</script>";
+    }
 
 }
 
@@ -135,25 +144,27 @@ if(isset($_POST['submitInsert'])){
 
         <main>
             <div class="insert-container" id="insert-container">
-
                     
             <?php
+            
+                date_default_timezone_set('Asia/Colombo');
+            
+                $myDate = date('Y/m/d');
 
-                if (date('H') > 12){
-
-                    $myDate = date('m/d/Y');
-
+                if (date('H') > 13){                    
+                        
                     include_once '../classes/config.php';
-
                     $con = mysqli_connect(HOST, USER, PASS, DB) or die('Connection Error! '.mysqli_error($con));
 
                     $checkuser = mysqli_query($con, "SELECT * FROM patient_diary WHERE patient_id = '$id' AND date = '$myDate'") or die(mysqli_error($con));
                     $result = mysqli_num_rows($checkuser);
                 
-                    if ($result){?>
+                    if ($result == 0){
+            ?>
                         <div class="head">
                             <div class="title">INSERT STATUS</div>
                         </div>
+                        
                         <form action="" method="POST">
                             <div class="insert-details">
                                 <div class="input-value">
@@ -169,7 +180,7 @@ if(isset($_POST['submitInsert'])){
                                 </div>
                                 <div class="input-value">
                                     <small>Food</small>
-                                    <textarea type="text" name="role" placeholder="What did you have?" required></textarea>
+                                    <textarea type="text" name="food" placeholder="What did you have?" required></textarea>
                                 </div>
                                 <div class="input-value">
                                     <small>Date</small>
@@ -180,63 +191,26 @@ if(isset($_POST['submitInsert'])){
                                 <input id="reset" type="reset" name="reset"  class="reset-btn" value="Reset">
                                 <input type="submit" name="submitInsert" class="insert-btn" value="Enter" id="insertbtn">
                             </div>
-                    <?php } else{ ?>
+                        </form>
+            <?php 
+                    } else{ 
+            ?>
                         <div class="no-head">
                             <div class="title">You can enter your status details only once a day.</div>
                         </div>
-                    <?php } 
-                } else{ ?>
+            <?php 
+                    } 
+
+                } else { 
+            ?>
                     <div class="no-head">
-                        <div class="title">You are allowed to enter your status everyday after 6 p.m only</div>
+                        <div class="title">You are allowed to enter your status everyday after 6.00 p.m only</div>
                     </div>
-                <?php
+            <?php
                 }
-                ?>
+            ?>                   
 
-                    <!-- <div class="head">
-                        <div class="title">INSERT STATUS</div>
-                    </div>
-                    <form action="" method="POST">
-                        <div class="insert-details">
-                            <div class="input-value">
-                                <small>Condition</small>
-                                <select name="condition" class="conditionscale" required>
-                                    <option value="" selected hidden>Select status</option>
-                                    <option value="much better">Much Better</option>
-                                    <option value="better">Better</option>
-                                    <option value="same">Same</option>
-                                    <option value="worse">Worse</option>
-                                    <option value="much worse">Much Worse</option>
-                                </select>
-                            </div>
-                            <div class="input-value">
-                                <small>Food</small>
-                                <textarea type="text" name="role" placeholder="What did you have?" required></textarea>
-                            </div>
-                            <div class="input-value">
-                                <small>Date</small>
-                                <input type="text" id="date" name="date" placeholder="MM-DD-YYYY" onfocus="(this.type='date')" onblur="(this.type='text')" required>
-                            </div>
-                        </div>
-                        <div class="insert-elements">
-                            <input id="reset" type="reset" name="reset"  class="reset-btn" value="Reset">
-                            <input type="submit" name="submitInsert" class="insert-btn" value="Enter" id="insertbtn">
-                        </div>
-                    </form> -->
-
-                    // code set 2 - if there is already a record for today
-
-                    <!-- <div class="no-head">
-                        <div class="title">You can enter your status details only once a day.</div>
-                    </div> -->
-
-                    // code set 3 - if there the time is not yet 6
-
-                    <!-- <div class="no-head">
-                        <div class="title">You are allowed to enter your status everyday after 6 p.m only</div>
-                    </div> -->
-
-                </div>
+            </div>
 
             <div class="grid">
                 <div class="data">
