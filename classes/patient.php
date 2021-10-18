@@ -69,6 +69,11 @@
             return $result;
         }
 
+        public function p_fetchdata_active(){
+            $result=mysqli_query($this->vpc,"SELECT * FROM patient WHERE p_status='a'");
+            return $result;
+        }
+
         public function p_fetchonerecord($patientid){
             $oneresult=mysqli_query($this->vpc,"SELECT * FROM patient WHERE patient_id=$patientid");
     	    return $oneresult;
