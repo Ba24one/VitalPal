@@ -170,7 +170,7 @@ if(isset($_POST['submitInsert'])){
                                 <div class="input-value">
                                     <small>Condition</small>
                                     <select name="condition" class="conditionscale" required>
-                                        <option value="" selected hidden>Select status</option>
+                                        <option value="" selected hidden>Select condition</option>
                                         <option value="much better">Much Better</option>
                                         <option value="better">Better</option>
                                         <option value="same">Same</option>
