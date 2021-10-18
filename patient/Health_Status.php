@@ -61,7 +61,7 @@ if(isset($_POST['submitInsert'])){
 
         <div class="sidebar-main">
             <div class="sidebar-user">
-                <img src="../images/vitalpal_logo_bw.png" alt="">
+                <img src="../images/vitalpal_logo_square.png?v=<?php echo time(); ?>" alt="">
                 <div class="user-info">
                     <h3><?php $patient->p_name($id);?></h3>
                     <span>PATIENT</span>
