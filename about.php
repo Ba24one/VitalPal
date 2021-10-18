@@ -15,7 +15,7 @@
 
 <section class="sub-header">
     <nav>
-        <a href="index.html"><img src="images/vitalpal_logo.png"></a>
+        <a href="index.html"><img src="images/vitalpal_logo.png?v=<?php echo time(); ?>"></a>
         <div class="nav-links" id="navLinks">
             <i class="fa fa-times" onclick="hideMenu()"></i>
             <ul>
@@ -47,7 +47,7 @@
                 <a href="index.php" class="common-btn green-btn">EXPLORE NOW</a>
         </div>
         <div class="about-col">
-            <img src="images/about.jpg" alt="">
+            <img src="images/about.jpg?v=<?php echo time(); ?>" alt="">
         </div>
     </div>
 
@@ -62,19 +62,19 @@
 
     <div class="row">
         <div class="team-col">
-            <img src="images/london.png" alt="">
+            <img src="images/london.png?v=<?php echo time(); ?>" alt="">
             <dive class="layer">
                 <h3>BAVAN</h3>
             </dive>
         </div>
         <div class="team-col">
-            <img src="images/washington.png" alt="">
+            <img src="images/washington.png?v=<?php echo time(); ?>" alt="">
             <dive class="layer">
                 <h3>POOJA</h3>
             </dive>
         </div>
         <div class="team-col">
-            <img src="images/newyork.png" alt="">
+            <img src="images/newyork.png?v=<?php echo time(); ?>" alt="">
             <dive class="layer">
                 <h3>SHATHIR</h3>
             </dive>

@@ -187,7 +187,7 @@
         <div class="panels-container">
             <div class="panel left-panel">
                 <div class="content">
-                    <img src="images/vitalpal_logo_bw.png" alt="">
+                    <img src="images/vitalpal_logo_bw.png?v=<?php echo time(); ?>" alt="">
                     <h3>New patient?</h3>
                     <p>If you are a new patient to the system please click below to visit the registration page</p>
                     <button class="btn transparent" id="register-btn">Register</button>
@@ -198,7 +198,7 @@
 
             <div class="panel right-panel">
                 <div class="content">
-                    <img src="images/vitalpal_logo_bw.png" alt="">
+                    <img src="images/vitalpal_logo_bw.png?v=<?php echo time(); ?>" alt="">
                     <h3>Already have an account?</h3>
                     <p>If you are a registered user of the system please click below to visit the login page</p>
                     <button class="btn transparent" id="login-btn">Login</button>

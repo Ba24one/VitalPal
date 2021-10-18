@@ -15,7 +15,7 @@
 
 <section class="header">
     <nav>
-        <a href="index.html"><img src="images/vitalpal_logo.png"></a>
+        <a href="index.html"><img src="images/vitalpal_logo.png?v=<?php echo time(); ?>"></a>
         <div class="nav-links" id="navLinks">
             <i class="fa fa-times" onclick="hideMenu()"></i>
             <ul>
@@ -90,21 +90,21 @@
 
     <div class="row">
         <div class="services-col">
-            <img src="images/library.png">
+            <img src="images/library.png?v=<?php echo time(); ?>">
             <h3>Patient Diary</h3>
             <p>
                 It records all Covid 19 patient reocrds who are self quarantined and unable to find hospitals for treatment.
             </p>
         </div>
         <div class="services-col">
-            <img src="images/basketball.png">
+            <img src="images/basketball.png?v=<?php echo time(); ?>">
             <h3>Hospital Diary</h3>
             <p>
                 It is the portal where critical patients details are been recorded when admitted to a hospital for doctors supervision and treatments.
             </p>
         </div>
         <div class="services-col">
-            <img src="images/cafeteria.png">
+            <img src="images/cafeteria.png?v=<?php echo time(); ?>">
             <h3>Report Centre</h3>
             <p>
                 It is the management information system which provides a detail insight of the self quarantined patients.

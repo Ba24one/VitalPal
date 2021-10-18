@@ -15,7 +15,7 @@
 
 <section class="sub-header">
     <nav>
-        <a href="index.html"><img src="images/vitalpal_logo.png"></a>
+        <a href="index.html"><img src="images/vitalpal_logo.png?v=<?php echo time(); ?>"></a>
         <div class="nav-links" id="navLinks">
             <i class="fa fa-times" onclick="hideMenu()"></i>
             <ul>
