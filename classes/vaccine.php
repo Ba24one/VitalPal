@@ -33,6 +33,14 @@
             
         }
 
+        public function v_getCount(){
+            $result = mysqli_query($this->vpc, "SELECT COUNT(*) FROM vaccine WHERE v_status = 'a'");
+            $row = mysqli_fetch_array($result);
+
+            $total = $row[0];
+            echo $total;
+        }
+
         public function v_update($vaccineid, $type, $description, $location, $date, $status){
             $check = mysqli_query($this->vpc, "SELECT vaccine_ID FROM vaccine WHERE vaccine_ID='$vaccineid'");
             $result = mysqli_num_rows($check);
