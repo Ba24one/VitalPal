@@ -154,7 +154,12 @@ if (isset($_REQUEST['q'])){
             var ampm = x.getHours( ) >= 12 ? ' PM' : ' AM';
             hours = x.getHours( ) % 12;
             hours = hours ? hours : 12;
-            var date = x.getMonth() + 1+ " . " + x.getDate() + " . " + x.getFullYear(); 
+            var monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+            ];
+            // var date = x.getMonth() + 1+ " . " + x.getDate() + " . " + x.getFullYear();
+
+            var date = monthNames[x.getMonth()] + " " + x.getDate() + ", " + x.getFullYear(); 
             var time = hours + ":" +  x.getMinutes() + ":" +  x.getSeconds() + ":" + ampm;
             // date = date + " - " +  hours + ":" +  x.getMinutes() + ":" +  x.getSeconds() + ":" + ampm;
             document.getElementById('date').innerHTML = date;
