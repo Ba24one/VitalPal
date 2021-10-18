@@ -157,6 +157,7 @@ if (isset($_REQUEST['q'])){
             var monthNames = ["January", "February", "March", "April", "May", "June",
             "July", "August", "September", "October", "November", "December"
             ];
+            
             // var date = x.getMonth() + 1+ " . " + x.getDate() + " . " + x.getFullYear();
 
             var date = monthNames[x.getMonth()] + " " + x.getDate() + ", " + x.getFullYear(); 
