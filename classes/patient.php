@@ -79,6 +79,14 @@
     	    return $oneresult;
         }
 
+        public function p_getCount(){
+            $result = mysqli_query($this->vpc, "SELECT COUNT(*) FROM patient WHERE p_status = 'a'");
+            $row = mysqli_fetch_array($result);
+
+            $total = $row[0];
+            echo $total;
+        }
+
         public function p_update($patientid, $name, $gender, $dob, $nic, $address, $email, $guardianName, $guardianNo, $guardianMail, $username, $password, $vaccType, $VaccDose){
             $password = md5($password);       
 
