@@ -69,6 +69,14 @@
 
         }
 
+        public function d_getCount(){
+            $result = mysqli_query($this->vpc, "SELECT COUNT(*) FROM doctor WHERE d_status = 'a'");
+            $row = mysqli_fetch_array($result);
+
+            $total = $row[0];
+            echo $total;
+        }
+
         public function d_update($doctorid, $dname, $practice, $specialization, $mbbs, $username){
             
             $check = mysqli_query($this->vpc, "SELECT doctor_id FROM doctor WHERE doctor_id='$doctorid'");
