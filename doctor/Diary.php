@@ -55,7 +55,7 @@ else if(isset($_POST['submitUpdate'])){
 
         <div class="sidebar-main">
             <div class="sidebar-user">
-                <img src="../images/vitalpal_logo_bw.png" alt="">
+                <img src="../images/vitalpal_logo_square.png?v=<?php echo time(); ?>" alt="">
                 <div class="user-info">
                     <h3><?php $doctor->d_name($id);?></h3>
                     <span>DOCTOR</span>
