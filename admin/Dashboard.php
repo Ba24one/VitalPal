@@ -162,7 +162,13 @@ if (isset($_REQUEST['q'])){
                                 <small>No. of currently active patients</small>
                             </div>
 
-                            <h2>200</h2>
+                            <h2>
+                                <?php
+                                    include_once '../classes/patient.php';
+                                    $fetchdata=new Patient();
+                                    $sql=$fetchdata->p_getCount();
+                                ?>
+                            </h2>
 
                         </div>
                         <div class="card-chart">
@@ -179,7 +185,13 @@ if (isset($_REQUEST['q'])){
                                 <small>No. of currently available doctors</small>
                             </div>
 
-                            <h2>10</h2>
+                            <h2>
+                                <?php
+                                    include_once '../classes/doctor.php';
+                                    $fetchdata=new Doctor();
+                                    $sql=$fetchdata->d_getCount();
+                                ?>
+                            </h2>
 
                         </div>
                         <div class="card-chart">
