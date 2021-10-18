@@ -1,6 +1,6 @@
 <?php
 // include function file
-include_once("../classes/patient.php");
+include_once("../classes/vaccine.php");
 
 session_start();
 include_once '../classes/admin.php';
@@ -17,14 +17,34 @@ if (isset($_REQUEST['q'])){
 
 if(isset($_POST['submitUpdate'])){
 
-    // code the update function for meals
+    $updatestatus=new Vaccine();
 
+    $update = $updatestatus->v_update($_REQUEST['id'], $_REQUEST['type'],$_REQUEST['description'], $_REQUEST['location'], $_REQUEST['date'], $_REQUEST['status']);
+    if($update){
+        
+        echo "<script>alert('Account updated successfully!');</script>";
+        // Code for redirection
+        echo "<script>window.location.href='Vaccines.php'</script>";
+    }
+    else
+    {
+        // Code for redirection
+        echo "<script>alert('Couldn't update status! Please Try Again!');</script>";
+    }
 }
 
 else if(isset($_POST['submitInsert'])){
 
-    // code the create function for meals
+    $vaccine=new Vaccine();
 
+    $register = $vaccine->v_create($_REQUEST['name'],$_REQUEST['description'], $_REQUEST['location'], $_REQUEST['date']);
+    if($register){
+        echo "<script>alert('Inserted Successful!');</script>";
+    }
+    else
+    {
+        echo "<script>alert('Entered email address or username already exists!');</script>";
+    }
 }
 
 ?>
@@ -296,9 +316,64 @@ else if(isset($_POST['submitInsert'])){
                                     </td>
                                 </tr>
                                 
+                                <?php
+                                    include_once '../classes/vaccine.php';
+                                    $fetchdata=new Vaccine();
+                                    $sql=$fetchdata->v_fetchdata();
+                                    $cnt=1;
+                                    while($row=mysqli_fetch_array($sql))
+                                    {
                                 
-                                // copy and paste codes from line 279 to 340 from Patients.php and change according to the table heading tha I've given
-
+                                echo '
+                                <tr>
+                                    <td>
+                                        <div>
+                                            <span class="indicator"></span>
+                                        </div>
+                                    </td>
+                                    <td id=id'.$cnt.'>
+                                        <div>
+                                            '.$row['vaccine_ID'].'
+                                        </div>
+                                    </td>
+                                    <td id=type'.$cnt.'>
+                                        <div>
+                                            '.$row['type'].'
+                                        </div>
+                                    </td>
+                                    <td id=description'.$cnt.'>
+                                        <div>
+                                            '.$row['description'].'
+                                        </div>
+                                    </td>     
+                                    <td id=location'.$cnt.'>
+                                        <div>
+                                            '.$row['location'].'
+                                        </div>
+                                    </td>   
+                                    <td id=date'.$cnt.'>
+                                        <div>
+                                            '.$row['date'].'
+                                        </div>
+                                    </td>                                                                       
+                                    <td id=status'.$cnt.'>
+                                        <div>
+                                            '.$row['v_status'].'
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="update">
+                                            
+                                            <button  id="updaterow" onclick="loadData('.$cnt.')"><span class="fa fa-pencil"></span></button>
+                                            
+                                        </div>
+                                    </td>
+                                </tr>       
+                                ';
+                                   $cnt++;
+                                    }
+                                ?>                        
+                                
 
                             </tbody>
                         </table>
@@ -381,9 +456,10 @@ else if(isset($_POST['submitInsert'])){
         function loadData(rowNo){
             //alert(rowNo);
             document.getElementById("v_id").value = document.getElementById('id'+ rowNo).innerText;
-            document.getElementById("v_type").value = document.getElementById('name'+ rowNo).innerText;
+            document.getElementById("v_type").value = document.getElementById('type'+ rowNo).innerText;
             document.getElementById("v_description").value = document.getElementById('description'+ rowNo).innerText;
             document.getElementById("v_location").value = document.getElementById('location'+ rowNo).innerText;
+            document.getElementById("v_date").value = document.getElementById('date'+ rowNo).innerText;
             document.getElementById("v_status").value = document.getElementById('status'+ rowNo).innerText;
         }
 
@@ -393,11 +469,11 @@ else if(isset($_POST['submitInsert'])){
         var month = today.getMonth()+1; //January is 0!
         var year = today.getFullYear();
         if(day<10){
-                day='0'+day
-            } 
-            if(month<10){
-                month='0'+month
-            } 
+            day='0'+day
+        } 
+        if(month<10){
+            month='0'+month
+        } 
 
         today = year+'-'+month+'-'+day;
         document.getElementById("date").setAttribute("min", today); 

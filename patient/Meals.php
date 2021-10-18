@@ -1,5 +1,8 @@
 <?php
 
+// include function file
+include_once("../classes/mealplan.php");
+
 session_start();
 include_once '../classes/patient.php';
 $patient = new Patient;
@@ -163,7 +166,42 @@ if (isset($_REQUEST['q'])){
                                 </td>
                             </tr>
                             
-                            // copy and paste codes from line 279 to 340 from Patients.php and change according to the table heading tha I've given
+                            <?php
+                                    include_once '../classes/mealplan.php';
+                                    $fetchdata=new Mealplan();
+                                    $sql=$fetchdata->m_fetchdata();
+                                    $cnt=1;
+                                    while($row=mysqli_fetch_array($sql))
+                                    {
+                                
+                                echo '
+                                <tr>
+                                    <td>
+                                        <div>
+                                            <span class="indicator"></span>
+                                        </div>
+                                    </td>                                    
+                                    <td id=mealType'.$cnt.'>
+                                        <div>
+                                            '.$row['meal_type'].'
+                                        </div>
+                                    </td>
+                                    <td id=dietType'.$cnt.'>
+                                        <div>
+                                            '.$row['diet_type'].'
+                                        </div>
+                                    </td>     
+                                    <td id=dietPlan'.$cnt.'>
+                                        <div>
+                                            '.$row['diet_plan'].'
+                                        </div>
+                                    </td>                                      
+                                </tr>       
+                                ';
+                                   $cnt++;
+                                    }
+                            ?>                            
+
 
                         </tbody>
                     </table>
