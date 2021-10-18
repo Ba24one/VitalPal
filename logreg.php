@@ -33,14 +33,14 @@
             $doctor = new Doctor();
             if ($doctor->d_session())
             {
-                header("location:login_tests/Doctor.php");
+                header("location:doctor/Dashboard.php");
             }
 
             $doctor = new Doctor();
             if ($_SERVER["REQUEST_METHOD"] == "POST"){
                 $login = $doctor->d_login($_REQUEST['username'],$_REQUEST['password']);
                 if($login){
-                    header("location:login_tests/Doctor.php");
+                    header("location:doctor/Dashboard.php");
                 }
                 else
                 {
