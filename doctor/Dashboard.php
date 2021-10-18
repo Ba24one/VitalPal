@@ -189,7 +189,13 @@ if (isset($_REQUEST['q'])){
                                 <small>Current vaccination programs</small>
                             </div>
 
-                            <h2>5</h2>
+                            <h2>
+                                <?php
+                                    include_once '../classes/vaccine.php';
+                                    $fetchdata=new Vaccine();
+                                    $sql=$fetchdata->v_getCount();
+                                ?>
+                            </h2>
 
                         </div>
                         <div class="card-chart">
