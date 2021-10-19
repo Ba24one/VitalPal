@@ -11,7 +11,7 @@
         }
 
         public function create($aname, $role, $dob, $nic, $username, $password){
-            $password = md5($password);
+            $password = sha1($password);
             
             $checkuser = mysqli_query($this->vpc, "SELECT admin_id FROM admin WHERE a_username='$username'");            
             $result1 = mysqli_num_rows($checkuser);               
@@ -26,7 +26,7 @@
         }
 
         public function a_login($username, $password){
-            $password = md5($password);
+            $password = sha1($password);
 
             $check = mysqli_query($this->vpc, "SELECT * FROM admin WHERE a_username='$username' AND a_password='$password' AND a_status='a'");
             $data = mysqli_fetch_array($check);

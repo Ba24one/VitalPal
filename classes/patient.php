@@ -13,7 +13,7 @@
         // Register function 
         public function p_register($name, $gender, $dob, $nic, $address, $email, $username, $password){
 
-            $password = md5($password);
+            $password = sha1($password);
             
             $checkuser = mysqli_query($this->vpc, "SELECT patient_id FROM patient WHERE p_username='$username'");            
             $result1 = mysqli_num_rows($checkuser);               
@@ -30,7 +30,7 @@
         // Login function
         public function p_login($username, $password){
 
-            $password = md5($password);
+            $password = sha1($password);
 
             $check = mysqli_query($this->vpc, "SELECT * FROM patient WHERE p_username='$username' AND p_password='$password' AND p_status='a'");
             $data = mysqli_fetch_array($check);
@@ -88,7 +88,7 @@
         }
 
         public function p_update($patientid, $name, $gender, $dob, $nic, $address, $email, $guardianName, $guardianNo, $guardianMail, $username, $password, $vaccType, $VaccDose){
-            $password = md5($password);       
+            $password = sha1($password);       
 
             $check = mysqli_query($this->vpc, "SELECT patient_id FROM patient WHERE patient_id='$patientid'");
             $result = mysqli_num_rows($check);

@@ -4,6 +4,9 @@ session_start();
 include_once '../classes/doctor.php';
 $doctor = new Doctor;
 
+include_once '../classes/hospital_diary.php';
+$hospital_diary = new HospitalDiary;
+
 $id = $_SESSION['id'];
 if (!$doctor->d_session()){
     header("location:../logreg.php");
@@ -15,13 +18,35 @@ if (isset($_REQUEST['q'])){
 
 if(isset($_POST['submitInsert'])){
 
-    // code the create function for diary
+    $hospital_diary = new HospitalDiary;
 
+    $register = $hospital_diary->hd_create($_REQUEST['ward'],  $_REQUEST['bed'], $_REQUEST['condition'], $_REQUEST['p_id'],$_REQUEST['h_id'],  $id);
+    if($register){
+        echo "<script>alert('Inserted Successful!');</script>";
+    }
+    else
+    {
+        echo "<script>alert('Entered email address or username already exists!');</script>";
+    }
+    
 }
 
 else if(isset($_POST['submitUpdate'])){
 
-    // code the update function for diary
+    $updatestatus=new HospitalDiary();
+
+    $update = $updatestatus->hd_update($_REQUEST['id'], $_REQUEST['wardNo'],$_REQUEST['bedNo'], $_REQUEST['condition'], $_REQUEST['status']);
+    if($update){
+        
+        echo "<script>alert('Account updated successfully!');</script>";
+        // Code for redirection
+        echo "<script>window.location.href='Diary.php'</script>";
+    }
+    else
+    {
+        // Code for redirection
+        echo "<script>alert('Couldn't update status! Please Try Again!');</script>";
+    }
 
 }
 
@@ -32,6 +57,7 @@ else if(isset($_POST['submitUpdate'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <head>
         <title>Doctor-Diary</title>
+        <link rel = "icon" type = "image/png" href = "../images/vitalpal_logo_square.png">
         <link rel="stylesheet" href="../css/style_5.css?v=<?php echo time(); ?>">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -175,7 +201,7 @@ else if(isset($_POST['submitUpdate'])){
                                 <option value="" selected hidden>Select status</option>
                                 <option value="much better">Better</option>
                                 <option value="better">Worse</option>
-                                <option value="same">Critical</option>
+                                <option value="Critical">Critical</option>
                             </select>
                         </div>
 
@@ -247,7 +273,7 @@ else if(isset($_POST['submitUpdate'])){
                                     <?php
                                     include_once '../classes/patient.php';
                                     $fetchdata=new Patient();
-                                    $sql=$fetchdata->p_fetchdata();
+                                    $sql=$fetchdata->p_fetchdata_active();
                                     $cnt=1;
                                     while($row=mysqli_fetch_array($sql))
                                     {
@@ -344,7 +370,7 @@ else if(isset($_POST['submitUpdate'])){
                                     <?php
                                     include_once '../classes/hospitals.php';
                                     $fetchdata=new Hospital();
-                                    $sql=$fetchdata->h_fetchdata();
+                                    $sql=$fetchdata->h_fetchdata_active();
                                     $cnt=1;
                                     while($row=mysqli_fetch_array($sql))
                                     {
@@ -407,11 +433,11 @@ else if(isset($_POST['submitUpdate'])){
                         </div>
                         <div class="form-input">
                             <small>Ward No. </small> <br>
-                            <input  type="text" name="dosage" id="d_wardNo" required>
+                            <input  type="text" name="wardNo" id="d_wardNo" required>
                         </div>
                         <div class="form-input">
                             <small>Bed No. </small> <br>
-                            <input  type="text" name="dosage" id="d_bedNo" required>
+                            <input  type="text" name="bedNo" id="d_bedNo" required>
                         </div>
                         <div class="form-input">
                             <small>Condition </small> <br>
@@ -419,12 +445,12 @@ else if(isset($_POST['submitUpdate'])){
                                 <option value="" selected hidden>Select condition</option>
                                 <option value="much better">Better</option>
                                 <option value="better">Worse</option>
-                                <option value="same">Critical</option>
+                                <option value="critical">Critical</option>
                             </select>
                         </div>
                         <div class="form-input">
                             <small>Status </small> <br>
-                            <select name="condition" id="d_status" class="conditionscale" required>
+                            <select name="status" id="d_status" class="conditionscale" required>
                                 <option value="" selected hidden>Select status</option>
                                 <option value="a">Active</option>
                                 <option value="i">Inactive</option>
@@ -512,7 +538,71 @@ else if(isset($_POST['submitUpdate'])){
                                     </td>
                                 </tr>
 
-                                // fetch necessary diary details according to the table given
+                                <?php
+                                    include_once '../classes/hospital_diary.php';
+                                    $fetchdata=new HospitalDiary();
+                                    $sql=$fetchdata->hd_fetchdata();
+                                    $cnt=1;
+                                    while($row=mysqli_fetch_array($sql))
+                                    {
+                                
+                                    echo '
+                                        <tr>
+                                            <td>
+                                                <div>
+                                                    <span class="indicator"></span>
+                                                </div>
+                                            </td>                                    
+                                            <td id=diary_id'.$cnt.'>
+                                                <div>
+                                                    '.$row['hosDiary_ID'].'
+                                                </div>
+                                            </td>
+                                            <td id=diary_name'.$cnt.'>
+                                                <div>
+                                                    '.$row['p_name'].'
+                                                </div>
+                                            </td>
+                                            <td id=h_name'.$cnt.'>
+                                                <div>
+                                                    '.$row['name'].'
+                                                </div>
+                                            </td>
+                                            <td id=diary_wardNo'.$cnt.'>
+                                                <div>
+                                                    '.$row['wardNo'].'
+                                                </div>
+                                            </td>
+                                            <td id=diary_BedNo'.$cnt.'>
+                                                <div>
+                                                    '.$row['bedNo'].'
+                                                </div>
+                                            </td>
+                                            <td id=condition'.$cnt.'>
+                                                <div>
+                                                    '.$row['p_condition'].'
+                                                </div>
+                                            </td>
+                                            <td id=d_name'.$cnt.'>
+                                                <div>
+                                                    '.$row['d_name'].'
+                                                </div>
+                                            </td>  
+                                            <td id=status'.$cnt.'>
+                                                <div>
+                                                    '.$row['status'].'
+                                                </div>
+                                            </td> 
+                                            <td>
+                                                <div class="update">
+                                                    <button  id="updaterow" onclick="loadData3('.$cnt.')"><span class="fa fa-pencil"></span></button>
+                                                </div>
+                                            </td>                                     
+                                        </tr>       
+                                        ';
+                                        $cnt++;
+                                            }
+                            ?>               
                                        
                             </tbody>
                         </table>

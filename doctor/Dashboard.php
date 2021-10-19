@@ -20,6 +20,7 @@ if (isset($_REQUEST['q'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <head>
         <title>Doctore-Dashboard</title>
+        <link rel = "icon" type = "image/png" href = "../images/vitalpal_logo_square.png">
         <link rel="stylesheet" href="../css/style_5.css?v=<?php echo time(); ?>">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -169,10 +170,16 @@ if (isset($_REQUEST['q'])){
                         <div class="card-info">
                             <div class="card-head">
                                 <span>Critical Condition</span>
-                                <small>No. of currently available doctors</small>
+                                <small>No. of current critical cases</small>
                             </div>
 
-                            <h2>10</h2>
+                            <h2>
+                                <?php
+                                    include_once '../classes/hospital_diary.php';
+                                    $fetchdata=new HospitalDiary();
+                                    $sql=$fetchdata->hd_getCount(); 
+                                ?>
+                            </h2>
 
                         </div>
                         <div class="card-chart">

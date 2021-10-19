@@ -11,7 +11,7 @@
         }
 
         public function d_create($dname, $practice, $specialization, $mbbs, $username, $password){
-            $password = md5($password);
+            $password = sha1($password);
             
             $checkuser = mysqli_query($this->vpc, "SELECT doctor_id FROM doctor WHERE d_username='$username'");            
             $result1 = mysqli_num_rows($checkuser);               
@@ -26,7 +26,7 @@
         }
 
         public function d_login($username, $password){
-            $password = md5($password);
+            $password = sha1($password);
 
             $check = mysqli_query($this->vpc, "SELECT * FROM doctor WHERE d_username='$username' AND d_password='$password' AND d_status='a'");
             $data = mysqli_fetch_array($check);

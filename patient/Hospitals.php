@@ -22,6 +22,7 @@ if (isset($_REQUEST['q'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <head>
         <title>Patient-Hospitals</title>
+        <link rel = "icon" type = "image/png" href = "../images/vitalpal_logo_square.png">
         <link rel="stylesheet" href="../css/style_4.css?v=<?php echo time(); ?>">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -174,7 +175,7 @@ if (isset($_REQUEST['q'])){
                             <?php
                                     include_once '../classes/hospitals.php';
                                     $fetchdata=new Hospital();
-                                    $sql=$fetchdata->h_fetchdata();
+                                    $sql=$fetchdata->h_fetchdata_active();
                                     $cnt=1;
                                     while($row=mysqli_fetch_array($sql))
                                     {

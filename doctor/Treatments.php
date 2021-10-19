@@ -4,6 +4,9 @@ session_start();
 include_once '../classes/doctor.php';
 $doctor = new Doctor;
 
+include_once '../classes/treatment.php';
+$treatment = new Treatment;
+
 $id = $_SESSION['id'];
 if (!$doctor->d_session()){
     header("location:../logreg.php");
@@ -15,8 +18,16 @@ if (isset($_REQUEST['q'])){
 
 if(isset($_POST['submitInsert'])){
 
-    // code the create function for treatments
+    $treatment=new Treatment();
 
+    $register = $treatment->t_create($_REQUEST['id'],$_REQUEST['dosage'], $_REQUEST['description'],  $_REQUEST['type'], $_REQUEST['date'], $id);
+    if($register){
+        echo "<script>alert('Inserted Successful!');</script>";
+    }
+    else
+    {
+        echo "<script>alert('Entered email address or username already exists!');</script>";
+    }
 }
 
 ?>
@@ -26,6 +37,7 @@ if(isset($_POST['submitInsert'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <head>
         <title>Doctor-Treatments</title>
+        <link rel = "icon" type = "image/png" href = "../images/vitalpal_logo_square.png">
         <link rel="stylesheet" href="../css/style_5.css?v=<?php echo time(); ?>">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -224,7 +236,53 @@ if(isset($_POST['submitInsert'])){
                                     </td>
                                 </tr>
 
-                                // fetch necessary patient details according to the table given
+                                <?php
+                                    include_once '../classes/patient.php';
+                                    $fetchdata=new Patient();
+                                    $sql=$fetchdata->p_fetchdata_active();
+                                    $cnt=1;
+                                    while($row=mysqli_fetch_array($sql))
+                                    {
+                                
+                                    echo '
+                                        <tr>
+                                            <td>
+                                                <div>
+                                                    <span class="indicator"></span>
+                                                </div>
+                                            </td>                                    
+                                            <td id=id'.$cnt.'>
+                                                <div>
+                                                    '.$row['patient_id'].'
+                                                </div>
+                                            </td>
+                                            <td id=name'.$cnt.'>
+                                                <div>
+                                                    '.$row['p_name'].'
+                                                </div>
+                                            </td>
+                                            <td id=nic'.$cnt.'>
+                                                <div>
+                                                    '.$row['nic'].'
+                                                </div>
+                                            </td>
+                                            <td id=dob'.$cnt.'>
+                                                <div>
+                                                    '.$row['p_dob'].'
+                                                </div>
+                                            </td> 
+                                            <td>
+                                        <div class="update">
+                                            
+                                            <button  id="updaterow" onclick="loadData('.$cnt.')"><span class="fa fa-pencil"></span></button>
+                                            
+                                        </div>
+                                    </td>                                   
+                                        </tr>       
+                                        ';
+                                        $cnt++;
+                                            }
+                                ?>         
                                        
                             </tbody>
                         </table>
@@ -305,7 +363,66 @@ if(isset($_POST['submitInsert'])){
                                     </td>
                                 </tr>
 
-                                // create treatment class and use a function to fetch all relevant data from treatment table according to the table given
+                                <?php
+                                    include_once '../classes/treatment.php';
+                                    $fetchdata=new Treatment();
+                                    $sql=$fetchdata->t_fetchdata();
+                                    $cnt=1;
+                                    while($row=mysqli_fetch_array($sql))
+                                    {
+                                
+                                    echo '
+                                        <tr>
+                                            <td>
+                                                <div>
+                                                    <span class="indicator"></span>
+                                                </div>
+                                            </td>                                    
+                                            <td id=id'.$cnt.'>
+                                                <div>
+                                                    '.$row['treatment_ID'].'
+                                                </div>
+                                            </td>
+                                            <td id=name'.$cnt.'>
+                                                <div>
+                                                    '.$row['p_name'].'
+                                                </div>
+                                            </td>
+                                            <td id=nic'.$cnt.'>
+                                                <div>
+                                                    '.$row['nic'].'
+                                                </div>
+                                            </td>
+                                            <td id=dosage'.$cnt.'>
+                                                <div>
+                                                    '.$row['dosage'].'
+                                                </div>
+                                            </td>   
+                                            <td id=description'.$cnt.'>
+                                                <div>
+                                                    '.$row['description'].'
+                                                </div>
+                                            </td>   
+                                            <td id=type'.$cnt.'>
+                                                <div>
+                                                    '.$row['type'].'
+                                                </div>
+                                            </td>  
+                                            <td id=date'.$cnt.'>
+                                                <div>
+                                                    '.$row['date'].'
+                                                </div>
+                                            </td>   
+                                            <td id=d_name'.$cnt.'>
+                                                <div>
+                                                    '.$row['d_name'].'
+                                                </div>
+                                            </td>                                                                            
+                                        </tr>       
+                                        ';
+                                        $cnt++;
+                                            }
+                                ?>         
                                        
                             </tbody>
                         </table>
