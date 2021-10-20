@@ -443,8 +443,8 @@ else if(isset($_POST['submitUpdate'])){
                             <small>Condition </small> <br>
                             <select name="condition" id="d_condition" class="conditionscale" required>
                                 <option value="" selected hidden>Select condition</option>
-                                <option value="much better">Better</option>
-                                <option value="better">Worse</option>
+                                <option value="better">Better</option>
+                                <option value="worse">Worse</option>
                                 <option value="critical">Critical</option>
                             </select>
                         </div>
@@ -578,7 +578,7 @@ else if(isset($_POST['submitUpdate'])){
                                                     '.$row['bedNo'].'
                                                 </div>
                                             </td>
-                                            <td id=condition'.$cnt.'>
+                                            <td id=diary_con'.$cnt.'>
                                                 <div>
                                                     '.$row['p_condition'].'
                                                 </div>
@@ -588,7 +588,7 @@ else if(isset($_POST['submitUpdate'])){
                                                     '.$row['d_name'].'
                                                 </div>
                                             </td>  
-                                            <td id=status'.$cnt.'>
+                                            <td id=diary_status'.$cnt.'>
                                                 <div>
                                                     '.$row['status'].'
                                                 </div>
