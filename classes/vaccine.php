@@ -12,16 +12,11 @@
 
         public function v_create($type, $description, $location, $date){
                         
-            $checkuser = mysqli_query($this->vpc, "SELECT vaccine_ID FROM vaccine WHERE type='$type'");            
-            $result1 = mysqli_num_rows($checkuser);               
-
-            if ($result1 == 0) {
-                $register = mysqli_query($this->vpc, "INSERT INTO vaccine (type, description, location, date, v_status) VALUES 
-                ('$type','$description','$location','$date', 'a')") or die(mysqli_error($this->vpc));                   
-                return $register;
-            } else {
-                return false;
-            }
+                      
+            $register = mysqli_query($this->vpc, "INSERT INTO vaccine (type, description, location, date, v_status) VALUES 
+            ('$type','$description','$location','$date', 'a')") or die(mysqli_error($this->vpc));                   
+            return $register;
+            
         }
 
         public function v_fetchdata(){

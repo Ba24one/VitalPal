@@ -103,6 +103,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <head>
     <title>Login and Registration Form</title>
+    <link rel = "icon" type = "image/png" href = "images/vitalpal_logo_square.png">
     <link rel="stylesheet" href="css/style_2.css?v=<?php echo time(); ?>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

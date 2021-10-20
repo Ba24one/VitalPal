@@ -20,6 +20,7 @@ if (isset($_REQUEST['q'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <head>
         <title>Patient-Vaccination</title>
+        <link rel = "icon" type = "image/png" href = "../images/vitalpal_logo_square.png">
         <link rel="stylesheet" href="../css/style_4.css?v=<?php echo time(); ?>">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

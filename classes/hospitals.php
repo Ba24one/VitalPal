@@ -1,4 +1,4 @@
-<!-- News class -->
+<!-- Hospital class -->
 <?php
 
     include_once 'config.php';
@@ -26,6 +26,11 @@
 
         public function h_fetchdata(){
             $result=mysqli_query($this->vpc,"SELECT * FROM hospital");
+            return $result;
+        }
+
+        public function h_fetchdata_active(){
+            $result=mysqli_query($this->vpc,"SELECT * FROM hospital WHERE h_status='a'");
             return $result;
         }
 

@@ -11,7 +11,7 @@
         }
 
         public function create($aname, $role, $dob, $nic, $username, $password){
-            $password = md5($password);
+            $password = sha1($password);
             
             $checkuser = mysqli_query($this->vpc, "SELECT admin_id FROM admin WHERE a_username='$username'");            
             $result1 = mysqli_num_rows($checkuser);               
@@ -26,7 +26,7 @@
         }
 
         public function a_login($username, $password){
-            $password = md5($password);
+            $password = sha1($password);
 
             $check = mysqli_query($this->vpc, "SELECT * FROM admin WHERE a_username='$username' AND a_password='$password' AND a_status='a'");
             $data = mysqli_fetch_array($check);
@@ -74,7 +74,7 @@
             if ($result > 0) {
 
                 $update = mysqli_query($this->vpc,"UPDATE admin SET a_name='$aname', role='$role', dob='$dob',
-                nic='$nic', a_username='$username' WHERE admin_id='$adminid'") or die(mysqli_error($this->vpc));
+                nic='$nic', a_username='$username', a_status='$status' WHERE admin_id='$adminid'") or die(mysqli_error($this->vpc));
                 echo "1";
                 return $update;
                  

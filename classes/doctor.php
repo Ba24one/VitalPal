@@ -11,7 +11,7 @@
         }
 
         public function d_create($dname, $practice, $specialization, $mbbs, $username, $password){
-            $password = md5($password);
+            $password = sha1($password);
             
             $checkuser = mysqli_query($this->vpc, "SELECT doctor_id FROM doctor WHERE d_username='$username'");            
             $result1 = mysqli_num_rows($checkuser);               
@@ -26,7 +26,7 @@
         }
 
         public function d_login($username, $password){
-            $password = md5($password);
+            $password = sha1($password);
 
             $check = mysqli_query($this->vpc, "SELECT * FROM doctor WHERE d_username='$username' AND d_password='$password' AND d_status='a'");
             $data = mysqli_fetch_array($check);
@@ -77,7 +77,7 @@
             echo $total;
         }
 
-        public function d_update($doctorid, $dname, $practice, $specialization, $mbbs, $username){
+        public function d_update($doctorid, $dname, $practice, $specialization, $mbbs, $username, $status){
             
             $check = mysqli_query($this->vpc, "SELECT doctor_id FROM doctor WHERE doctor_id='$doctorid'");
             $result = mysqli_num_rows($check);
@@ -85,7 +85,7 @@
             if ($result > 0) {
 
                 $update = mysqli_query($this->vpc,"UPDATE doctor SET d_name='$dname', place_of_practice='$practice', specialization='$specialization',
-                mbbs_no='$mbbs', d_username='$username' WHERE doctor_id='$doctorid'") or die(mysqli_error($this->vpc));
+                mbbs_no='$mbbs', d_username='$username', d_status='$status' WHERE doctor_id='$doctorid'") or die(mysqli_error($this->vpc));
                 echo "1";
                 return $update;
                  
