@@ -229,9 +229,41 @@ if (isset($_REQUEST['q'])){
                 <img src="../images/admin_home.svg" alt="">
             </div>
 
+            <div class="timedate-container">
+                <span class="spandate" id='date'></span>
+                <span class="spantime" id='time'></span>
+            </div>
+
         </main>
     </div>
 
     <label for="sidebar-toggle" class="body-label"></label>
+
+    <script>
+
+        //Live time and date
+        function display_date() {
+            var x = new Date()
+            var ampm = x.getHours( ) >= 12 ? ' PM' : ' AM';
+            hours = x.getHours( ) % 12;
+            hours = hours ? hours : 12;
+            var monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+            ];
+            // var date = x.getMonth() + 1+ " . " + x.getDate() + " . " + x.getFullYear();
+
+            var date = monthNames[x.getMonth()] + " " + x.getDate() + ", " + x.getFullYear(); 
+            var time = hours + ":" +  x.getMinutes() + ":" +  x.getSeconds() + ":" + ampm;            
+            document.getElementById('date').innerHTML = date;
+            document.getElementById('time').innerHTML = time;
+            display_datetime();
+        }
+        function display_datetime(){
+            var refresh=1000; // Refresh rate in milli seconds
+            mytime=setTimeout('display_date()',refresh)
+        }
+        display_datetime()
+
+    </script>
 </body>
 </html>

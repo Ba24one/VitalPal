@@ -345,6 +345,33 @@ main{
 
 }
 
+.timedate-container{
+    background: #223749;
+    border-radius: 10px;
+    padding: 15px;
+    width: 100%;
+    border-radius: 10px;
+    transition: 0.5s;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.timedate-container .spandate{
+    color: #fff;
+    width: 10%;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.timedate-container .spantime{
+    padding-left: 10px;
+    float: right;
+    color: #fff;
+    width: 44%;
+    font-weight: 600;
+    font-size: 18px;
+    text-align: right;
+}
+
 .grid{
     margin-top: 30px;
     display: grid;
