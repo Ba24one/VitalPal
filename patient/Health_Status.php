@@ -152,7 +152,7 @@ if(isset($_POST['submitInsert'])){
             
                 $myDate = date('Y/m/d');
 
-                if (date('H') > 18){                    
+                if (date('H') >= 18){                    
                         
                     include_once '../classes/config.php';
                     $con = mysqli_connect(HOST, USER, PASS, DB) or die('Connection Error! '.mysqli_error($con));
