@@ -74,7 +74,7 @@
             if ($result > 0) {
 
                 $update = mysqli_query($this->vpc,"UPDATE admin SET a_name='$aname', role='$role', dob='$dob',
-                nic='$nic', a_username='$username' WHERE admin_id='$adminid'") or die(mysqli_error($this->vpc));
+                nic='$nic', a_username='$username', a_status='$status' WHERE admin_id='$adminid'") or die(mysqli_error($this->vpc));
                 echo "1";
                 return $update;
                  

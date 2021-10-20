@@ -77,7 +77,7 @@
             echo $total;
         }
 
-        public function d_update($doctorid, $dname, $practice, $specialization, $mbbs, $username){
+        public function d_update($doctorid, $dname, $practice, $specialization, $mbbs, $username, $status){
             
             $check = mysqli_query($this->vpc, "SELECT doctor_id FROM doctor WHERE doctor_id='$doctorid'");
             $result = mysqli_num_rows($check);
@@ -85,7 +85,7 @@
             if ($result > 0) {
 
                 $update = mysqli_query($this->vpc,"UPDATE doctor SET d_name='$dname', place_of_practice='$practice', specialization='$specialization',
-                mbbs_no='$mbbs', d_username='$username' WHERE doctor_id='$doctorid'") or die(mysqli_error($this->vpc));
+                mbbs_no='$mbbs', d_username='$username', d_status='$status' WHERE doctor_id='$doctorid'") or die(mysqli_error($this->vpc));
                 echo "1";
                 return $update;
                  
