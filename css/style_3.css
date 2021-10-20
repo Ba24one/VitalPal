@@ -326,7 +326,7 @@ main{
 }
 
 .card-chart span{
-    color: #37BAE5;
+    color: #5dc774;
 }
 
 .animation-container{
@@ -850,6 +850,10 @@ tr:nth-child(odd) span.indicator{
         width: 100%;
     }
 
+    .animation-container{
+        margin-bottom: 0.5%;
+    }
+
     #sidebar-toggle:checked ~ .sidebar{
         left: 0;
     }
@@ -864,6 +868,12 @@ tr:nth-child(odd) span.indicator{
 }
 
 @media only screen and (max-width: 768px){
+    .animation-container img{
+        max-width: 90%;
+        height: auto;
+        margin-bottom: 22%;
+    }
+
     .insert-container .input-value input,
     .insert-container .input-value select,
     .insert-container .input-value textarea{
@@ -935,6 +945,11 @@ tr:nth-child(odd) span.indicator{
 }
 
 @media only screen and (max-width: 540px){
+    .animation-container{
+        margin-top: 4%;
+        margin-bottom: 1%;
+    }
+
     .insert-container .input-value input,
     .insert-container .input-value select,
     .insert-container .input-value textarea{
