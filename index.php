@@ -91,21 +91,21 @@
 
     <div class="row">
         <div class="services-col">
-            <img src="images/library.png?v=<?php echo time(); ?>">
+            <img src="images/patient_diary.png?v=<?php echo time(); ?>">
             <h3>Patient Diary</h3>
             <p>
                 It records all Covid 19 patient reocrds who are self quarantined and unable to find hospitals for treatment.
             </p>
         </div>
         <div class="services-col">
-            <img src="images/basketball.png?v=<?php echo time(); ?>">
+            <img src="images/hospital_diary.png?v=<?php echo time(); ?>">
             <h3>Hospital Diary</h3>
             <p>
                 It is the portal where critical patients details are been recorded when admitted to a hospital for doctors supervision and treatments.
             </p>
         </div>
         <div class="services-col">
-            <img src="images/cafeteria.png?v=<?php echo time(); ?>">
+            <img src="images/report_center.png?v=<?php echo time(); ?>">
             <h3>Report Centre</h3>
             <p>
                 It is the management information system which provides a detail insight of the self quarantined patients.
