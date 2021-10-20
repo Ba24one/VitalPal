@@ -225,6 +225,10 @@ if (isset($_REQUEST['q'])){
                 </div>
             </div>
 
+            <div class="animation-container">
+                <img src="../images/admin_home.svg" alt="">
+            </div>
+
         </main>
     </div>
 
