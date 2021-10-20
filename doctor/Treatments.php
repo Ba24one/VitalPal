@@ -356,11 +356,6 @@ if(isset($_POST['submitInsert'])){
                                             <p>Doc Name</p>
                                         </div>
                                     </td>
-                                    <td>
-                                        <div>
-                                            <p></p>
-                                        </div>
-                                    </td>
                                 </tr>
 
                                 <?php
