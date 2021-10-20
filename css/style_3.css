@@ -1,5 +1,5 @@
 :root{
-    --color-main: #121E28;
+    --color-main: #051a2b;
 }
 
 *{
@@ -326,7 +326,7 @@ main{
 }
 
 .card-chart span{
-    color: #5dc774;
+    color: #81da94;
 }
 
 .animation-container{
