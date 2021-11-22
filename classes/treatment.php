@@ -5,11 +5,13 @@
 
     class Treatment {
 
+        // Fetch DB connection
         public function __construct() {
             $con = mysqli_connect(HOST, USER, PASS, DB) or die('Connection Error! '.mysqli_error());
             $this->vpc=$con;
         }
 
+        // Create treatment record in database 
         public function t_create($patientid, $dosage, $description, $type, $date, $id){
                      
             $register = mysqli_query($this->vpc, "INSERT INTO treatment (dosage, description, type, date, doctor_id, patient_id) VALUES 
@@ -18,6 +20,7 @@
             
         }
 
+        // Read all treatment records
         public function t_fetchdata(){
             $result=mysqli_query($this->vpc,"SELECT t.treatment_ID, p.p_name, p.nic, t.dosage, t.description, t.type, t.date, d.d_name
             FROM treatment t INNER JOIN patient p ON t.patient_id = p.patient_id

@@ -5,11 +5,13 @@
 
     class Doctor {
 
+        // Fetch DB connection
         public function __construct() {
             $con = mysqli_connect(HOST, USER, PASS, DB) or die('Connection Error! '.mysqli_error());
             $this->vpc=$con;
         }
 
+        // Create doctor record in database
         public function d_create($dname, $practice, $specialization, $mbbs, $username, $password){
             $password = sha1($password);
             
@@ -25,6 +27,7 @@
             }
         }
 
+        // Doctor login authentication
         public function d_login($username, $password){
             $password = sha1($password);
 
@@ -43,6 +46,7 @@
             }
         }
 
+        // Get doctor name
         public function d_name($id){
             $result = mysqli_query($this->vpc, "SELECT * FROM doctor WHERE doctor_id='$id'");
             $row = mysqli_fetch_array($result);
@@ -60,6 +64,7 @@
             session_destroy();
         }
 
+        // Read all doctors
         public function d_fetchdata(){
             $result=mysqli_query($this->vpc,"SELECT * FROM doctor");
             return $result;
@@ -69,6 +74,7 @@
 
         }
 
+        // Get active doctors count
         public function d_getCount(){
             $result = mysqli_query($this->vpc, "SELECT COUNT(*) FROM doctor WHERE d_status = 'a'");
             $row = mysqli_fetch_array($result);
@@ -77,6 +83,7 @@
             echo $total;
         }
 
+        // Update doctors records
         public function d_update($doctorid, $dname, $practice, $specialization, $mbbs, $username, $status){
             
             $check = mysqli_query($this->vpc, "SELECT doctor_id FROM doctor WHERE doctor_id='$doctorid'");

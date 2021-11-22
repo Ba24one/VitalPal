@@ -1,23 +1,23 @@
 <?php
 
-session_start();
-include_once '../classes/doctor.php';
-$doctor = new Doctor;
+    session_start();
+    include_once '../classes/doctor.php';
+    $doctor = new Doctor;
 
-$id = $_SESSION['id'];
-if (!$doctor->d_session()){
-    header("location:../logreg.php");
-}
-if (isset($_REQUEST['q'])){
-    $doctor->d_logout();
-    header("location:../logreg.php");
-}
+    $id = $_SESSION['id'];
+    if (!$doctor->d_session()){
+        header("location:../logreg.php");
+    }
+    if (isset($_REQUEST['q'])){
+        $doctor->d_logout();
+        header("location:../logreg.php");
+    }
 
-if(isset($_POST['submitInsert'])){
+    if(isset($_POST['submitInsert'])){
 
-    // code the create function for treatments
+        // code the create function for treatments
 
-}
+    }
 
 ?>
 
@@ -34,223 +34,223 @@ if(isset($_POST['submitInsert'])){
         <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css"> -->
         <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     </head>
-<body>
+    <body>
 
-    <input type="checkbox" name="" id="sidebar-toggle">
+        <input type="checkbox" name="" id="sidebar-toggle">
 
-    <div class="sidebar">
-        <div class="sidebar-logout">
-            <div class="logout-flex">
+        <div class="sidebar">
+            <div class="sidebar-logout">
+                <div class="logout-flex">
 
-                <div class="logout-icons">
-                    <a href="?q=logout"><span class="fa fa-sign-out"></span></a>
+                    <div class="logout-icons">
+                        <a href="?q=logout"><span class="fa fa-sign-out"></span></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-main">
+                <div class="sidebar-user">
+                    <img src="../images/vitalpal_logo_square.png?v=<?php echo time(); ?>" alt="">
+                    <div class="user-info">
+                        <h3><?php $doctor->d_name($id);?></h3>
+                        <span>DOCTOR</span>
+                    </div>
+                </div>
+
+                <div class="sidebar-menu">
+                <ul>
+                        <li>
+                            <a href="Dashboard.php">
+                                <div class="side-icon">
+                                    <span class="fa fa-home"></span>
+                                </div>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li>
+                            <a href="Hospitals.php">
+                                <div class="side-icon">
+                                    <span class="fa fa-hospital-o"></span>
+                                </div>
+                                Hospitals
+                            </a>
+                        </li>
+                        <li>
+                            <a href="News.php">
+                                <div class="side-icon">
+                                    <span class="fa fa-newspaper-o"></span>
+                                </div>
+                                News
+                            </a>
+                        </li>
+                        <li>
+                            <a href="Patients.php">
+                                <div class="side-icon">
+                                    <span class="fa fa-users"></span>
+                                </div>
+                                Patients
+                            </a>
+                        </li>
+                        <li>
+                            <a href="Diary.php">
+                                <div class="side-icon">
+                                    <span class="fa fa-book"></span>
+                                </div>
+                                Diary
+                            </a>
+                        </li>
+                        <li>
+                            <a href="Treatments.php">
+                                <div class="side-icon">
+                                    <span class="fa fa-stethoscope"></span>
+                                </div>
+                                Treatments
+                            </a>
+                        </li>
+                        <li id="dash">
+                            <a href="Reports.php">
+                                <div class="side-icon">
+                                    <span class="fa fa-file-text"></span>
+                                </div>
+                                Reports
+                            </a>
+                        </li>
+                    </ul>
+                    
                 </div>
             </div>
         </div>
 
-        <div class="sidebar-main">
-            <div class="sidebar-user">
-                <img src="../images/vitalpal_logo_square.png?v=<?php echo time(); ?>" alt="">
-                <div class="user-info">
-                    <h3><?php $doctor->d_name($id);?></h3>
-                    <span>DOCTOR</span>
+        <div class="main-content">
+            <header>
+                <div class="menu-toggle">
+                    <label for="sidebar-toggle">
+                        <span class="fa fa-bars"></span>
+                    </label>
                 </div>
-            </div>
 
-            <div class="sidebar-menu">
-            <ul>
-                    <li>
-                        <a href="Dashboard.php">
-                            <div class="side-icon">
-                                <span class="fa fa-home"></span>
-                            </div>
-                            Dashboard
-                        </a>
-                    </li>
-                    <li>
-                        <a href="Hospitals.php">
-                            <div class="side-icon">
-                                <span class="fa fa-hospital-o"></span>
-                            </div>
-                            Hospitals
-                        </a>
-                    </li>
-                    <li>
-                        <a href="News.php">
-                            <div class="side-icon">
-                                <span class="fa fa-newspaper-o"></span>
-                            </div>
-                            News
-                        </a>
-                    </li>
-                    <li>
-                        <a href="Patients.php">
-                            <div class="side-icon">
-                                <span class="fa fa-users"></span>
-                            </div>
-                            Patients
-                        </a>
-                    </li>
-                    <li>
-                        <a href="Diary.php">
-                            <div class="side-icon">
-                                <span class="fa fa-book"></span>
-                            </div>
-                            Diary
-                        </a>
-                    </li>
-                    <li>
-                        <a href="Treatments.php">
-                            <div class="side-icon">
-                                <span class="fa fa-stethoscope"></span>
-                            </div>
-                            Treatments
-                        </a>
-                    </li>
-                    <li id="dash">
-                        <a href="Reports.php">
-                            <div class="side-icon">
-                                <span class="fa fa-file-text"></span>
-                            </div>
-                            Reports
-                        </a>
-                    </li>
-                </ul>
-                
-            </div>
+                <div class="header-heading">
+                    <a href="Dashboard.php"><h2>VitalPal</h2></a>
+                </div>
+
+                <div class="header-icons">
+                    <span class="fa fa-info"> </span>
+                    <span class="fa fa-cog"> </span>
+                </div>
+            </header>
+
+            <main>
+
+                Under Maintanence
+            </main>
         </div>
-    </div>
 
-    <div class="main-content">
-        <header>
-            <div class="menu-toggle">
-                <label for="sidebar-toggle">
-                    <span class="fa fa-bars"></span>
-                </label>
-            </div>
+        <label for="sidebar-toggle" class="body-label"></label>
 
-            <div class="header-heading">
-                <a href="Dashboard.php"><h2>VitalPal</h2></a>
-            </div>
+        <script>
 
-            <div class="header-icons">
-                <span class="fa fa-info"> </span>
-                <span class="fa fa-cog"> </span>
-            </div>
-        </header>
+            // This is for auto-resize in textarea
+            const tx = document.getElementsByTagName("textarea");
+                for (let i = 0; i < tx.length; i++) {
+                tx[i].setAttribute("style", "height:" + (tx[i].scrollHeight) + "px;overflow-y:hidden;");
+                tx[i].addEventListener("input", OnInput, false);
+            }
 
-        <main>
+            function OnInput() {
+                this.style.height = "40px";
+                this.style.height = (this.scrollHeight) + "px";
+            }
 
-            Under Maintanence
-        </main>
-    </div>
+            document.getElementById('reset').onclick = function(){
+                var txtArea = document.getElementById("t_description");
+                txtArea.setAttribute("style", "height: 40px");
+            }
 
-    <label for="sidebar-toggle" class="body-label"></label>
+            // empty the search input when category changed for patients table
+            document.getElementById("searchfilter1").onchange = function(){
+                var x = document.getElementById('search1').value = "";
+            }
 
-    <script>
+            // search inside the table using specific category for patients table
+            document.getElementById("search1").onkeyup = function() {
 
-        // This is for auto-resize in textarea
-        const tx = document.getElementsByTagName("textarea");
-            for (let i = 0; i < tx.length; i++) {
-            tx[i].setAttribute("style", "height:" + (tx[i].scrollHeight) + "px;overflow-y:hidden;");
-            tx[i].addEventListener("input", OnInput, false);
-        }
+                var x = document.getElementById('searchfilter1').value;
 
-        function OnInput() {
-            this.style.height = "40px";
-            this.style.height = (this.scrollHeight) + "px";
-        }
+                var searchfilter = parseInt(x, 10);
 
-        document.getElementById('reset').onclick = function(){
-            var txtArea = document.getElementById("t_description");
-            txtArea.setAttribute("style", "height: 40px");
-        }
+                var filter = document.getElementById('search1').value.toUpperCase();
 
-        // empty the search input when category changed for patients table
-        document.getElementById("searchfilter1").onchange = function(){
-            var x = document.getElementById('search1').value = "";
-        }
+                var table = document.getElementById('table1');
 
-        // search inside the table using specific category for patients table
-        document.getElementById("search1").onkeyup = function() {
+                var tr = table.getElementsByTagName('tr');
 
-            var x = document.getElementById('searchfilter1').value;
+                for(var i=0; i<tr.length; i++){
+                    var textValue = tr[i].getElementsByTagName('td')[searchfilter].innerText;
 
-            var searchfilter = parseInt(x, 10);
-
-            var filter = document.getElementById('search1').value.toUpperCase();
-
-            var table = document.getElementById('table1');
-
-            var tr = table.getElementsByTagName('tr');
-
-            for(var i=0; i<tr.length; i++){
-                var textValue = tr[i].getElementsByTagName('td')[searchfilter].innerText;
-
-                if(textValue){
-                    if(textValue.toUpperCase().indexOf(filter) > -1){
-                        tr[i].style.display = "";
-                    }
-                    else{
-                        tr[i].style.display = "none";
+                    if(textValue){
+                        if(textValue.toUpperCase().indexOf(filter) > -1){
+                            tr[i].style.display = "";
+                        }
+                        else{
+                            tr[i].style.display = "none";
+                        }
                     }
                 }
             }
-        }
 
-        // empty the search input when category changed for treatments table
-        document.getElementById("searchfilter2").onchange = function(){
-            var x = document.getElementById('search2').value = "";
-        }
+            // empty the search input when category changed for treatments table
+            document.getElementById("searchfilter2").onchange = function(){
+                var x = document.getElementById('search2').value = "";
+            }
 
-        // search inside the table using specific category for treatments table
-        document.getElementById("search2").onkeyup = function() {
+            // search inside the table using specific category for treatments table
+            document.getElementById("search2").onkeyup = function() {
 
-            var x = document.getElementById('searchfilter2').value;
+                var x = document.getElementById('searchfilter2').value;
 
-            var searchfilter = parseInt(x, 10);
+                var searchfilter = parseInt(x, 10);
 
-            var filter = document.getElementById('search2').value.toUpperCase();
+                var filter = document.getElementById('search2').value.toUpperCase();
 
-            var table = document.getElementById('table2');
+                var table = document.getElementById('table2');
 
-            var tr = table.getElementsByTagName('tr');
+                var tr = table.getElementsByTagName('tr');
 
-            for(var i=0; i<tr.length; i++){
-                var textValue = tr[i].getElementsByTagName('td')[searchfilter].innerText;
+                for(var i=0; i<tr.length; i++){
+                    var textValue = tr[i].getElementsByTagName('td')[searchfilter].innerText;
 
-                if(textValue){
-                    if(textValue.toUpperCase().indexOf(filter) > -1){
-                        tr[i].style.display = "";
-                    }
-                    else{
-                        tr[i].style.display = "none";
+                    if(textValue){
+                        if(textValue.toUpperCase().indexOf(filter) > -1){
+                            tr[i].style.display = "";
+                        }
+                        else{
+                            tr[i].style.display = "none";
+                        }
                     }
                 }
             }
-        }
 
-        // load the row selected from the table into the insert form
-        function loadData(rowNo){
-            //alert(rowNo);
-            document.getElementById("p_id").value = document.getElementById('id'+ rowNo).innerText;
-        }
+            // load the row selected from the table into the insert form
+            function loadData(rowNo){
+                //alert(rowNo);
+                document.getElementById("p_id").value = document.getElementById('id'+ rowNo).innerText;
+            }
 
-        //keep the max date as of today
-        var today = new Date();
-        var day = today.getDate();
-        var month = today.getMonth()+1; //January is 0!
-        var year = today.getFullYear();
-        if(day<10){
-            day='0'+day
-        }
-        if(month<10){
-            month='0'+month
-        }
+            //keep the max date as of today
+            var today = new Date();
+            var day = today.getDate();
+            var month = today.getMonth()+1; //January is 0!
+            var year = today.getFullYear();
+            if(day<10){
+                day='0'+day
+            }
+            if(month<10){
+                month='0'+month
+            }
 
-        today = year+'-'+month+'-'+day;
-        document.getElementById("t_date").setAttribute("max", today); 
+            today = year+'-'+month+'-'+day;
+            document.getElementById("t_date").setAttribute("max", today); 
 
-    </script>
-</body>
+        </script>
+    </body>
 </html>

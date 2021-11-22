@@ -5,11 +5,13 @@
 
     class HospitalDiary {
 
+        // Fetch database connection
         public function __construct() {
             $con = mysqli_connect(HOST, USER, PASS, DB) or die('Connection Error! '.mysqli_error());
             $this->vpc=$con;
         }
 
+        // Insert hospital diary record to the database
         public function hd_create($wardno, $bedno, $pcondition, $patientid, $hospitalid, $doctorid){
                                    
             $register = mysqli_query($this->vpc, "INSERT INTO hospital_diary (wardNo, bedNo, p_condition, status, patient_ID, doctor_ID, hospital_ID) VALUES 
@@ -18,6 +20,7 @@
             
         }
 
+        // Read all hospital diary data
         public function hd_fetchdata(){
             $result=mysqli_query($this->vpc,"SELECT hd.hosDiary_ID, hd.wardNo, hd.bedNo, hd.p_condition, h.name, d.d_name, p.p_name, hd.status
             FROM hospital h INNER JOIN hospital_diary hd ON h.hospital_ID = hd.hospital_ID
@@ -29,6 +32,7 @@
             
         }
 
+        // Update hospital diary record
         public function hd_update($hosDiaryID, $wardNo, $bedNo, $condition, $status){
             $check = mysqli_query($this->vpc, "SELECT hosDiary_ID FROM hospital_diary WHERE hosDiary_ID='$hosDiaryID'");
             $result = mysqli_num_rows($check);
@@ -45,6 +49,7 @@
             }
         }
 
+        // Get active critical patients count
         public function hd_getCount(){
             $result = mysqli_query($this->vpc, "SELECT COUNT(*) FROM hospital_diary WHERE status = 'a' AND p_condition LIKE '%critical%'");
             $row = mysqli_fetch_array($result);
