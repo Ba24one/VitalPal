@@ -5,20 +5,22 @@
 
     class Vaccine {
 
+        // Fetch DB connection
         public function __construct() {
             $con = mysqli_connect(HOST, USER, PASS, DB) or die('Connection Error! '.mysqli_error());
             $this->vpc=$con;
         }
 
+        // Create vaccine record in database
         public function v_create($type, $description, $location, $date){
-                        
-                      
+                                              
             $register = mysqli_query($this->vpc, "INSERT INTO vaccine (type, description, location, date, v_status) VALUES 
             ('$type','$description','$location','$date', 'a')") or die(mysqli_error($this->vpc));                   
             return $register;
             
         }
 
+        // Read all vaccines data
         public function v_fetchdata(){
             $result=mysqli_query($this->vpc,"SELECT * FROM vaccine");
             return $result;
@@ -28,6 +30,7 @@
             
         }
 
+        // Get active vaccine record count
         public function v_getCount(){
             $result = mysqli_query($this->vpc, "SELECT COUNT(*) FROM vaccine WHERE v_status = 'a'");
             $row = mysqli_fetch_array($result);
@@ -36,6 +39,7 @@
             echo $total;
         }
 
+        // Update vaccines records
         public function v_update($vaccineid, $type, $description, $location, $date, $status){
             $check = mysqli_query($this->vpc, "SELECT vaccine_ID FROM vaccine WHERE vaccine_ID='$vaccineid'");
             $result = mysqli_num_rows($check);

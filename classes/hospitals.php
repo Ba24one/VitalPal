@@ -5,11 +5,13 @@
 
     class Hospital {
 
+        // Fetch DB connection
         public function __construct() {
             $con = mysqli_connect(HOST, USER, PASS, DB) or die('Connection Error! '.mysqli_error());
             $this->vpc=$con;
         }
 
+        // Create hospital record
         public function h_create($hname, $location, $contact, $type){
                         
             $checkuser = mysqli_query($this->vpc, "SELECT hospital_ID FROM hospital WHERE name='$hname' AND location='$location'");            
@@ -24,11 +26,13 @@
             }
         }
 
+        // Read all hospital data
         public function h_fetchdata(){
             $result=mysqli_query($this->vpc,"SELECT * FROM hospital");
             return $result;
         }
 
+        // Read active hospital data
         public function h_fetchdata_active(){
             $result=mysqli_query($this->vpc,"SELECT * FROM hospital WHERE h_status='a'");
             return $result;
@@ -38,6 +42,7 @@
             
         }
 
+        // Update hospital records
         public function h_update($hospitalid, $hname, $location, $contact, $type, $status){
             $check = mysqli_query($this->vpc, "SELECT hospital_ID FROM hospital WHERE hospital_ID='$hospitalid'");
             $result = mysqli_num_rows($check);

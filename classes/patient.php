@@ -5,6 +5,7 @@
 
     class Patient {
 
+        // Fetch DB connection
         public function __construct() {
             $con = mysqli_connect(HOST, USER, PASS, DB) or die('Connection Error! '.mysqli_error());
             $this->vpc=$con;
@@ -45,6 +46,7 @@
             }
         }
 
+        // Get patients name
         public function p_name($id){
             
             $result = mysqli_query($this->vpc, "SELECT * FROM patient WHERE patient_id='$id'");
@@ -64,21 +66,25 @@
             session_destroy();
         }
 
+        // Read all patients
         public function p_fetchdata(){
             $result=mysqli_query($this->vpc,"SELECT * FROM patient");
             return $result;
         }
 
+        // Read all active patients 
         public function p_fetchdata_active(){
             $result=mysqli_query($this->vpc,"SELECT * FROM patient WHERE p_status='a'");
             return $result;
         }
 
+        // Read only the relevant patient
         public function p_fetchonerecord($patientid){
             $oneresult=mysqli_query($this->vpc,"SELECT * FROM patient WHERE patient_id=$patientid");
     	    return $oneresult;
         }
 
+        // Read active patients count
         public function p_getCount(){
             $result = mysqli_query($this->vpc, "SELECT COUNT(*) FROM patient WHERE p_status = 'a'");
             $row = mysqli_fetch_array($result);
@@ -87,6 +93,7 @@
             echo $total;
         }
 
+        // Update patient record
         public function p_update($patientid, $name, $gender, $dob, $nic, $address, $email, $guardianName, $guardianNo, $guardianMail, $username, $password, $vaccType, $VaccDose){
             $password = sha1($password);       
 
@@ -106,6 +113,7 @@
             }
         }
 
+        // Update patients status
         public function p_statusupdate($patientid, $status){
             $check = mysqli_query($this->vpc, "SELECT patient_id FROM patient WHERE patient_id='$patientid'");
             $result = mysqli_num_rows($check);

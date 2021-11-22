@@ -5,11 +5,13 @@
 
     class Mealplan {
 
+        // Fetch database connection
         public function __construct() {
             $con = mysqli_connect(HOST, USER, PASS, DB) or die('Connection Error! '.mysqli_error());
             $this->vpc=$con;
         }
 
+        // create meal plan record
         public function m_create($mealtype, $diettype, $dietplan){
             $checkuser = mysqli_query($this->vpc, "SELECT meal_ID FROM mealplan WHERE meal_type='$mealtype' AND diet_plan='$diettype'");            
             $result1 = mysqli_num_rows($checkuser);               
@@ -23,6 +25,7 @@
             }
         }
 
+        // Read all meal plans records
         public function m_fetchdata(){
             $result=mysqli_query($this->vpc,"SELECT * FROM mealplan");
             return $result;
@@ -32,6 +35,7 @@
             
         }
 
+        // Update meal plan record
         public function m_update($mealid, $mealtype, $diettype, $dietplan, $status){
             $check = mysqli_query($this->vpc, "SELECT meal_ID FROM mealplan WHERE meal_ID='$mealid'");
             $result = mysqli_num_rows($check);
