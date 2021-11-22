@@ -102,7 +102,7 @@
 
 
 
-<!------Javascript for toggle menu------>
+<!------JavaScript for toggle menu------>
 <script>
 
     var navLinks = document.getElementById("navLinks");
