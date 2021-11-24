@@ -94,6 +94,22 @@
             }
         }
 
+        public function d_changePass($doctorid, $oldPass, $newPass){
+            $oldPass = sha1($oldPass);
+            $newPass = sha1($newPass);
+
+            $checkPass = mysqli_query($this->vpc, "SELECT doctor_id FROM doctor WHERE doctor_id='$doctorid' AND d_password='$oldPass'");
+            $result = mysqli_num_rows($checkPass);
+
+            if ($result > 0){
+                $changePass = mysqli_query($this->vpc,"UPDATE doctor SET d_password='$newPass' WHERE doctor_id='$doctorid'") or die(mysqli_error($this->vpc));
+                return $changePass;
+            }
+            else {
+                return false;
+            }
+        }
+
     }
 
 ?>
