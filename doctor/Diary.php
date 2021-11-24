@@ -165,7 +165,7 @@ else if(isset($_POST['submitUpdate'])){
             </div>
 
             <div class="header-icons">
-                <span class="fa fa-info"> </span>
+                <a href="Inquiry.php"><span class="fa fa-info"> </span></a>
                 <span class="fa fa-cog"> </span>
             </div>
         </header>
