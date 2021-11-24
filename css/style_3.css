@@ -950,6 +950,14 @@ tr:nth-child(odd) span.indicator{
         margin-bottom: 1%;
     }
 
+    .timedate-container .spandate{
+        font-size: 14px;
+    }
+    
+    .timedate-container .spantime{
+        font-size: 14px;
+    }
+
     .insert-container .input-value input,
     .insert-container .input-value select,
     .insert-container .input-value textarea{
