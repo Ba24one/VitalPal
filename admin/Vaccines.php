@@ -123,14 +123,6 @@ else if(isset($_POST['submitInsert'])){
                         </a>
                     </li>
                     <li>
-                        <a href="News.php">
-                            <div class="side-icon">
-                                <span class="fa fa-newspaper-o"></span>
-                            </div>
-                            News   
-                        </a>
-                    </li>
-                    <li>
                         <a href="Hospitals.php">
                             <div class="side-icon">
                                 <span class="fa fa-ambulance"></span>
