@@ -199,9 +199,9 @@ else if(isset($_POST['submitUpdate'])){
                             <small>Condition </small> <br>
                             <select name="condition" id="condition" class="conditionscale" required>
                                 <option value="" selected hidden>Select status</option>
-                                <option value="much better">Better</option>
-                                <option value="better">Worse</option>
-                                <option value="Critical">Critical</option>
+                                <option value="better">Better</option>
+                                <option value="worse">Worse</option>
+                                <option value="critical">Critical</option>
                             </select>
                         </div>
 
