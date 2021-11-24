@@ -48,7 +48,7 @@
                 <a href="index.php" class="common-btn green-btn">EXPLORE NOW</a>
         </div>
         <div class="about-col">
-            <img src="images/about.jpg?v=<?php echo time(); ?>" alt="">
+            <img src="images/about.png?v=<?php echo time(); ?>" alt="">
         </div>
     </div>
 
@@ -63,19 +63,19 @@
 
     <div class="row">
         <div class="team-col">
-            <img src="images/london.png?v=<?php echo time(); ?>" alt="">
+            <img src="images/bavan.png?v=<?php echo time(); ?>" alt="">
             <dive class="layer">
                 <h3>BAVAN</h3>
             </dive>
         </div>
         <div class="team-col">
-            <img src="images/washington.png?v=<?php echo time(); ?>" alt="">
+            <img src="images/pooja.png?v=<?php echo time(); ?>" alt="">
             <dive class="layer">
                 <h3>POOJA</h3>
             </dive>
         </div>
         <div class="team-col">
-            <img src="images/newyork.png?v=<?php echo time(); ?>" alt="">
+            <img src="images/shathir.png?v=<?php echo time(); ?>" alt="">
             <dive class="layer">
                 <h3>SHATHIR</h3>
             </dive>
