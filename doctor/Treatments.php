@@ -118,14 +118,6 @@ if(isset($_POST['submitInsert'])){
                             Treatments
                         </a>
                     </li>
-                    <li>
-                        <a href="Reports.php">
-                            <div class="side-icon">
-                                <span class="fa fa-file-text"></span>
-                            </div>
-                            Reports
-                        </a>
-                    </li>
                 </ul>
                 
             </div>
