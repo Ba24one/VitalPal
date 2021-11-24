@@ -774,6 +774,14 @@ textarea::-webkit-scrollbar{
 }
 
 @media only screen and (max-width: 540px){
+    .timedate-container .spandate{
+        font-size: 14px;
+    }
+    
+    .timedate-container .spantime{
+        font-size: 14px;
+    }
+    
     .page-header{
         margin-bottom: 20%;
     }
