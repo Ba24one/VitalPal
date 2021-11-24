@@ -121,6 +121,22 @@
             }
         }
 
+        public function p_changePass($patientid, $oldPass, $newPass){
+            $oldPass = sha1($oldPass);
+            $newPass = sha1($newPass);
+
+            $checkPass = mysqli_query($this->vpc, "SELECT patient_id FROM patient WHERE patient_id='$patientid' AND p_password='$oldPass'");
+            $result = mysqli_num_rows($checkPass);
+
+            if ($result > 0){
+                $changePass = mysqli_query($this->vpc,"UPDATE patient SET p_password='$newPass' WHERE patient_id='$patientid'") or die(mysqli_error($this->vpc));
+                return $changePass;
+            }
+            else {
+                return false;
+            }
+        }
+
     }
 
 ?>
