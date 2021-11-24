@@ -135,7 +135,7 @@ if(isset($_POST['submitInsert'])){
 
             <div class="header-icons">
                 <a href="Inquiry.php"><span class="fa fa-info"> </span></a>
-                <span class="fa fa-cog"> </span>
+                <a href="Settings.php"><span class="fa fa-cog"> </span></a>
             </div>
         </header>
 
