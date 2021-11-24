@@ -142,7 +142,7 @@ if (isset($_REQUEST['q'])){
             </div>
 
             <div class="header-icons">
-                <span class="fa fa-cog"> </span>
+                <a href="Settings.php"><span class="fa fa-cog"> </span></a>
             </div>
         </header>
 
