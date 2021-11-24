@@ -83,6 +83,22 @@
             }
         }
 
+        public function a_changePass($adminid, $oldPass, $newPass){
+            $oldPass = sha1($oldPass);
+            $newPass = sha1($newPass);
+
+            $checkPass = mysqli_query($this->vpc, "SELECT admin_id FROM admin WHERE admin_id='$adminid' AND a_password='$oldPass'");
+            $result = mysqli_num_rows($checkPass);
+
+            if ($result > 0){
+                $changePass = mysqli_query($this->vpc,"UPDATE admin SET a_password='$newPass' WHERE admin_id='$adminid'") or die(mysqli_error($this->vpc));
+                return $changePass;
+            }
+            else {
+                return false;
+            }
+        }
+
     }
 
 ?>
